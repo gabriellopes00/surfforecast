@@ -8,7 +8,8 @@
     "build": "rimraf ./dist && tsc",
     "lint": "eslint ./src ./tests --ext .ts",
     "lint:fix": "eslint ./src ./tests --ext .ts --fix",
-    "dev": "ts-node-dev  --respawn --transpile-only --ignore-watch node_modules --no-notify ./src/index.ts"
+    "dev": "ts-node-dev  --respawn --transpile-only --ignore-watch node_modules --no-notify ./src/index.ts",
+    "test:func": "jest --projects ./tests --runInBand --passWithNoTests"
   },
   "repository": {
     "type": "git",
@@ -21,14 +22,19 @@
   },
   "homepage": "https://github.com/gabriellopes00/surfing-app#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.20",
     "@types/module-alias": "^2.0.0",
     "@types/node": "^14.14.22",
+    "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
     "eslint": "^7.18.0",
     "git-commit-msg-linter": "^3.0.0",
     "husky": "^4.3.8",
+    "jest": "^26.6.3",
     "lint-staged": "^10.5.3",
+    "supertest": "^6.1.1",
+    "ts-jest": "^26.4.4",
     "ts-node-dev": "^1.1.1",
     "typescript": "^4.1.3"
   },
