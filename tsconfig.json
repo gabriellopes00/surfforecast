@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "commonjs",
+    "lib": ["es6"],
+    "allowJs": true,
+    "outDir": "./dist",
+    "rootDirs": ["./src/", "./tests/"],
+    "sourceMap": true,
+    "removeComments": true,
+    "typeRoots": ["./node_modules/@types", "./@types"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@tests/*": ["./tests/*"],
+      "@src/*": ["./src/*"]
+    }
+  },
+  "include": ["./src/**/*", "./tests/**/*"],
+  "exclude": ["./node_modules/", "dist/"]
+}
