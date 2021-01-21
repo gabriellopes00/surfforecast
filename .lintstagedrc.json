@@ -1,6 +1,6 @@
 {
   "*.ts": [
-    "yarn test",
-    "yarn lint"
+    "yarn lint:fix",
+    "yarn style:fix"
   ]
 }

@@ -4,8 +4,15 @@ const root = resolve(__dirname)
 module.exports = {
   rootDir: root,
   displayName: 'root-tests',
-  testMatch: ['<rootDir>/src/**/*.test.ts'],
   testEnvironment: 'node',
+  collectCoverageFrom: [
+    '<rootDir>/**/*.ts',
+    '!<rootDir>/**/*.d.ts',
+    '!<rootDir>/**/*-interface.ts',
+    '!**/interfaces/**'
+  ],
+  coverageDirectory: './coverage',
+  coverageProvider: 'v8',
   clearMocks: true,
   preset: 'ts-jest',
   moduleNameMapper: {
