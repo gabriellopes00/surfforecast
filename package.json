@@ -9,7 +9,11 @@
     "lint": "eslint ./src ./tests --ext .ts",
     "lint:fix": "eslint ./src ./tests --ext .ts --fix",
     "dev": "ts-node-dev  --respawn --transpile-only --ignore-watch node_modules --no-notify ./src/server.ts",
-    "test:func": "jest --projects ./tests --runInBand --passWithNoTests"
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:ci": "yarn test --coverage",
+    "test:watch": "yarn test --watch",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:func": "yarn test --projects ./tests"
   },
   "repository": {
     "type": "git",
