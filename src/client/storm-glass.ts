@@ -1,5 +1,7 @@
 import { AxiosStatic } from 'axios'
 import { env } from '../../config/env'
+import { ClientRequestError } from './errors/client-request-error'
+import { StormGlassResponseError } from './errors/stormglass-response-error'
 
 export interface StormGlassPointSource {
   [key: string]: number
@@ -42,15 +44,26 @@ export class StormGlassClient {
     latitude: number,
     longitude: number
   ): Promise<ForecastPoint[]> {
-    const response = await this.request.get<StormGlassForecastResponse>(
-      `https://api.stormglass.io/v2/weather/point?params=${this.stormGlassAPIParams}&source=${this.stormGlassAPISource}&lat=${latitude}&lng=${longitude}`,
-      {
-        headers: {
-          Authorization: env.stormGlassToken
+    try {
+      const response = await this.request.get<StormGlassForecastResponse>(
+        `https://api.stormglass.io/v2/weather/point?params=${this.stormGlassAPIParams}&source=${this.stormGlassAPISource}&lat=${latitude}&lng=${longitude}`,
+        {
+          headers: {
+            Authorization: env.stormGlassToken
+          }
         }
+      )
+      return this.normalizeResponse(response.data)
+    } catch (error) {
+      if (error.response && error.response.status) {
+        throw new StormGlassResponseError(
+          `Error: ${JSON.stringify(error.response.data)} Code: ${
+            error.response.status
+          }`
+        )
       }
-    )
-    return this.normalizeResponse(response.data)
+      throw new ClientRequestError(error.message, 'StormGlass')
+    }
   }
 
   private normalizeResponse(
