@@ -3,6 +3,7 @@ import { env } from '../../config/env'
 import { ClientRequestError } from './errors/client-request-error'
 import { StormGlassResponseError } from './errors/stormglass-response-error'
 import { ForecastPoint } from './interfaces/forecast'
+import * as HTTPUtils from '../utils/implementations/request'
 import {
   StormGlassForecastResponse,
   StormGlassPoint
@@ -13,7 +14,7 @@ export class StormGlassClient {
     'swellDirection,swellHeight,swellPeriod,waveDirection,waveHeight,windDirection,windSpeed'
   private readonly stormGlassAPISource = 'noaa'
 
-  constructor(protected request: AxiosStatic) {}
+  constructor(protected request = new HTTPUtils.Request()) {}
 
   public async fetchPoints(
     latitude: number,
@@ -21,7 +22,7 @@ export class StormGlassClient {
   ): Promise<ForecastPoint[]> {
     try {
       const response = await this.request.get<StormGlassForecastResponse>(
-        `https://api.stormglass.io/v2/weather/point?params=${this.stormGlassAPIParams}&source=${this.stormGlassAPISource}&lat=${latitude}&lng=${longitude}`,
+        `${env.stormGlassUrl}/weather/point?params=${this.stormGlassAPIParams}&source=${this.stormGlassAPISource}&lat=${latitude}&lng=${longitude}`,
         {
           headers: {
             Authorization: env.stormGlassToken
@@ -30,7 +31,7 @@ export class StormGlassClient {
       )
       return this.normalizeResponse(response.data)
     } catch (error) {
-      if (error.response && error.response.status) {
+      if (HTTPUtils.Request.isRequestError(error)) {
         throw new StormGlassResponseError(
           `Error: ${JSON.stringify(error.response.data)} Code: ${
             error.response.status
