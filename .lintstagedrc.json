@@ -1,6 +1,5 @@
 {
   "*.ts": [
-    "yarn test:func",
     "yarn test:unit",
     "yarn lint:fix",
     "yarn style:fix"

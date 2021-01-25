@@ -17,7 +17,7 @@
     "test:watch": "yarn test --watch",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:func": "yarn test:watch --projects ./tests",
-    "test:unit": "yarn test:watch -c jest-unit.config.js"
+    "test:unit": "yarn test -c jest-unit.config.js"
   },
   "repository": {
     "type": "git",
