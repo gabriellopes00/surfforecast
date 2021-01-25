@@ -38,22 +38,26 @@ export class ForecastService {
           beach.lat,
           beach.lng
         )
-        const enrichedData = points.map(e => ({
-          ...{
-            lat: beach.lat,
-            lng: beach.lng,
-            name: beach.name,
-            position: beach.position,
-            rating: 1
-          },
-          ...e
-        }))
+        const enrichedData = this.enrichedData(points, beach)
         pointsSources.push(...enrichedData)
         return this.mapForecastByTime(pointsSources)
       }
     } catch (error) {
       throw new ForecastInternalProcessingError(error.message)
     }
+  }
+
+  private enrichedData(points: ForecastPoint[], beach: Beach): BeachForecast[] {
+    return points.map(e => ({
+      ...{
+        lat: beach.lat,
+        lng: beach.lng,
+        name: beach.name,
+        position: beach.position,
+        rating: 1
+      },
+      ...e
+    }))
   }
 
   private mapForecastByTime(forecast: BeachForecast[]): TimeForecast[] {
