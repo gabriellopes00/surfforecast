@@ -6,10 +6,12 @@ import { ForecastService } from './forecast'
 jest.mock('../../client/storm-glass.ts')
 
 describe('Forecast Service', () => {
+  const mockedStormGlassClient = new StormGlassClient() as jest.Mocked<StormGlassClient>
+
   it('Should return the forecast for a list of beaches', async () => {
-    StormGlassClient.prototype.fetchPoints = jest
-      .fn()
-      .mockResolvedValueOnce(stormGlassNormalizedData)
+    mockedStormGlassClient.fetchPoints.mockResolvedValueOnce(
+      stormGlassNormalizedData
+    )
 
     const beaches: Beach[] = [
       {
@@ -83,8 +85,14 @@ describe('Forecast Service', () => {
       }
     ]
 
-    const forecast = new ForecastService(new StormGlassClient())
+    const forecast = new ForecastService(mockedStormGlassClient)
     const beachesWithRating = await forecast.processForecastForBeaches(beaches)
     expect(beachesWithRating).toEqual(expectedResponse)
+  })
+
+  it('Should return an empty list when beaches array is empty', async () => {
+    const forecastService = new ForecastService()
+    const response = await forecastService.processForecastForBeaches([])
+    expect(response).toEqual(response)
   })
 })
