@@ -1,28 +1,9 @@
 import { ForecastPoint } from '@src/client/interfaces/forecast'
 import { StormGlassClient } from '../../client/storm-glass'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
-
-export enum BeachPosition {
-  S = 'S',
-  E = 'E',
-  W = 'W',
-  N = 'N'
-}
-
-export interface Beach {
-  lat: number
-  lng: number
-  position: BeachPosition
-  user: string
-  name: string
-}
-
-export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
-
-export interface TimeForecast {
-  time: string
-  forecast: BeachForecast[]
-}
+import { Beach } from './interfaces/beach'
+import { BeachForecast } from './interfaces/beach-forecast'
+import { TimeForecast } from './interfaces/time-forecast'
 
 export class ForecastService {
   constructor(protected readonly stormGlass = new StormGlassClient()) {}
