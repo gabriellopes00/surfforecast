@@ -1,6 +1,6 @@
 import { StormGlassClient } from '../../client/storm-glass'
 import stormGlassNormalizedData from '../../../tests/fixtures/stormglass-normalized-response.json'
-import { Beach, BeachPosition } from './interfaces/beach'
+import { BeachModel, BeachPosition } from '../../domain/models/beach'
 import { ForecastService } from './forecast-service'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
 
@@ -9,13 +9,12 @@ jest.mock('../../client/storm-glass.ts')
 describe('Forecast Service', () => {
   const mockedStormGlassClient = new StormGlassClient() as jest.Mocked<StormGlassClient>
 
-  const beaches: Beach[] = [
+  const beaches: BeachModel[] = [
     {
       lat: -33.792726,
       lng: 151.289824,
       name: 'Manly',
-      position: BeachPosition.E,
-      user: 'user-id'
+      position: BeachPosition.E
     }
   ]
 

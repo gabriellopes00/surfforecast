@@ -1,4 +1,6 @@
 import { ForecastPoint } from '@src/client/interfaces/forecast'
-import { Beach } from './beach'
+import { BeachModel } from '../../../domain/models/beach'
 
-export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
+export interface BeachForecast
+  extends Omit<BeachModel, 'user'>,
+    ForecastPoint {}

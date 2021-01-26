@@ -1,7 +1,7 @@
 import { ForecastPoint } from '@src/client/interfaces/forecast'
 import { StormGlassClient } from '../../client/storm-glass'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
-import { Beach } from './interfaces/beach'
+import { BeachModel } from '../../domain/models/beach'
 import { BeachForecast } from './interfaces/beach-forecast'
 import { TimeForecast } from './interfaces/time-forecast'
 
@@ -9,7 +9,7 @@ export class ForecastService {
   constructor(protected readonly stormGlass = new StormGlassClient()) {}
 
   public async processForecastForBeaches(
-    beaches: Beach[]
+    beaches: BeachModel[]
   ): Promise<TimeForecast[]> {
     try {
       const pointsSources: BeachForecast[] = []
@@ -28,7 +28,10 @@ export class ForecastService {
     }
   }
 
-  private enrichedData(points: ForecastPoint[], beach: Beach): BeachForecast[] {
+  private enrichedData(
+    points: ForecastPoint[],
+    beach: BeachModel
+  ): BeachForecast[] {
     return points.map(e => ({
       ...{
         lat: beach.lat,

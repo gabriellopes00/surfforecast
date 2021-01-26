@@ -1,4 +1,4 @@
-export enum BeachPosition {
+/* export enum BeachPosition {
   S = 'S',
   E = 'E',
   W = 'W',
@@ -12,3 +12,4 @@ export interface Beach {
   user: string
   name: string
 }
+ */
