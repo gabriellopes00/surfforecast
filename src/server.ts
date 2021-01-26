@@ -1,10 +1,13 @@
 import { env } from '../config/env'
 import { Server } from '@overnightjs/core'
 import express, { Application } from 'express'
-import * as db from './database/index'
+import * as db from './infra/db/helpers/mongoose'
 
 import { ForecastController } from './controllers/forecast'
 import { BeachController } from './controllers/beaches'
+
+import { MongoBeachRepository } from './infra/db/beaches/add-beach-repository'
+import { DbAddBeach } from './data/usecases/db-add-beach'
 
 export class SetupServer extends Server {
   constructor(private readonly port = env.port) {
@@ -17,7 +20,10 @@ export class SetupServer extends Server {
 
   private controllersSetup(): void {
     const forecastController = new ForecastController()
-    const beachController = new BeachController()
+
+    const mongoBeachRepository = new MongoBeachRepository()
+    const dbAddBeach = new DbAddBeach(mongoBeachRepository)
+    const beachController = new BeachController(dbAddBeach)
 
     this.addControllers([forecastController, beachController])
   }

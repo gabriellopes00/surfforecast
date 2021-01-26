@@ -1,5 +1,5 @@
-import { BeachModel } from '../../../../domain/models/beach'
 import mongoose, { Document, Model } from 'mongoose'
+import { AddBeachModel } from '../../../domain/usecases/add-beach'
 
 const schema = new mongoose.Schema(
   {
@@ -20,5 +20,5 @@ const schema = new mongoose.Schema(
   }
 )
 
-export interface BeachSchema extends Omit<BeachModel, 'id'>, Document {}
+export interface BeachSchema extends AddBeachModel, Document {}
 export const Beach: Model<BeachSchema> = mongoose.model('Beach', schema)

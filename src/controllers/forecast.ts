@@ -1,5 +1,5 @@
 import { Controller, Get } from '@overnightjs/core'
-import { Beach, BeachSchema } from '../infra/db/beaches/models/beach'
+import { Beach, BeachSchema } from '../infra/db/beaches/beach-model'
 import { ForecastService } from '../services/forecast/forecast-service'
 import { Request, Response } from 'express'
 
@@ -13,10 +13,11 @@ export class ForecastController {
     res: Response
   ): Promise<void> {
     try {
-      const beaches: BeachSchema[] = await Beach.find({})
+      const beaches = await Beach.find({})
       const forecastData = await forecast.processForecastForBeaches(beaches)
       res.status(200).send(forecastData)
     } catch (error) {
+      console.log(error.message)
       res.status(500).send({ error: 'Something went wrong' })
     }
   }

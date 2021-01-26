@@ -4,6 +4,7 @@ import { ForecastInternalProcessingError } from './errors/internal-processing-er
 import { BeachModel } from '../../domain/models/beach'
 import { BeachForecast } from './interfaces/beach-forecast'
 import { TimeForecast } from './interfaces/time-forecast'
+import { AddBeachModel } from '@src/domain/usecases/add-beach'
 
 export class ForecastService {
   constructor(protected readonly stormGlass = new StormGlassClient()) {}
@@ -30,7 +31,7 @@ export class ForecastService {
 
   private enrichedData(
     points: ForecastPoint[],
-    beach: BeachModel
+    beach: AddBeachModel
   ): BeachForecast[] {
     return points.map(e => ({
       ...{
