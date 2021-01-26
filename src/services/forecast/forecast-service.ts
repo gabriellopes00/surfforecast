@@ -1,15 +1,15 @@
-import { ForecastPoint } from '../../client/interfaces/forecast'
+import { ForecastPoint } from '@src/domain/models/forecast'
 import { StormGlassClient } from '../../client/storm-glass'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
 import { BeachModel } from '../../domain/models/beach'
-import { BeachForecast } from './interfaces/beach-forecast'
-import { TimeForecast } from './interfaces/time-forecast'
+import { BeachForecast, TimeForecast } from '../../domain/models/forecast'
 import { AddBeachModel } from '@src/domain/usecases/add-beach'
+import { ProcessForecast } from '../../domain/usecases/forecast/process-forecast'
 
-export class ForecastService {
+export class ForecastService implements ProcessForecast {
   constructor(protected readonly stormGlass = new StormGlassClient()) {}
 
-  public async processForecastForBeaches(
+  public async processByBeaches(
     beaches: BeachModel[]
   ): Promise<TimeForecast[]> {
     try {
@@ -25,6 +25,7 @@ export class ForecastService {
       }
       return this.mapForecastByTime(pointsSources)
     } catch (error) {
+      console.log(error)
       throw new ForecastInternalProcessingError(error.message)
     }
   }

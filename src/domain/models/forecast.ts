@@ -1,3 +1,5 @@
+import { AddBeachModel } from '../usecases/add-beach'
+
 export interface ForecastPoint {
   time: string
   waveHeight: number
@@ -7,4 +9,11 @@ export interface ForecastPoint {
   swellPeriod: number
   windDirection: number
   windSpeed: number
+}
+
+export interface BeachForecast extends AddBeachModel, ForecastPoint {}
+
+export interface TimeForecast {
+  time: string
+  forecast: BeachForecast[]
 }

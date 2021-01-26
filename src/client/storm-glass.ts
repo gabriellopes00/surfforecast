@@ -1,15 +1,15 @@
-import { AxiosStatic } from 'axios'
-import { env } from '../../config/env'
-import { ClientRequestError } from './errors/client-request-error'
+import { stormGlassUrl, stormGlassToken } from '../../config/env'
+import { StormGlassRequestError } from './errors/stormglass-request-error'
 import { StormGlassResponseError } from './errors/stormglass-response-error'
-import { ForecastPoint } from './interfaces/forecast'
+import { ForecastPoint } from '@src/domain/models/forecast'
 import * as HTTPUtils from '../utils/implementations/request'
 import {
   StormGlassForecastResponse,
   StormGlassPoint
 } from './interfaces/stormglass-response'
+import { ForecastClient } from '@src/domain/usecases/forecast/fetch-points'
 
-export class StormGlassClient {
+export class StormGlassClient implements ForecastClient {
   private readonly stormGlassAPIParams =
     'swellDirection,swellHeight,swellPeriod,waveDirection,waveHeight,windDirection,windSpeed'
   private readonly stormGlassAPISource = 'noaa'
@@ -22,10 +22,10 @@ export class StormGlassClient {
   ): Promise<ForecastPoint[]> {
     try {
       const response = await this.request.get<StormGlassForecastResponse>(
-        `${env.stormGlassUrl}/weather/point?params=${this.stormGlassAPIParams}&source=${this.stormGlassAPISource}&lat=${latitude}&lng=${longitude}`,
+        `${stormGlassUrl}/weather/point?params=${this.stormGlassAPIParams}&source=${this.stormGlassAPISource}&lat=${latitude}&lng=${longitude}`,
         {
           headers: {
-            Authorization: env.stormGlassToken
+            Authorization: stormGlassToken
           }
         }
       )
@@ -38,7 +38,7 @@ export class StormGlassClient {
           }`
         )
       }
-      throw new ClientRequestError(error.message, 'StormGlass')
+      throw new StormGlassRequestError(error.message, 'StormGlass')
     }
   }
 

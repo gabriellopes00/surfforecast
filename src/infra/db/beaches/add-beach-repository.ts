@@ -16,7 +16,6 @@ export class MongoBeachRepository implements AddBeachRepository {
       position: result.position,
       id: result.id
     }
-    console.log(beach)
     return beach
   }
 }

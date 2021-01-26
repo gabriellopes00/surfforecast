@@ -65,7 +65,7 @@ describe('StormGlass client', () => {
     const stormGlass = new StormGlassClient(mockedRequest)
     const request = stormGlass.fetchPoints(lat, lng)
     await expect(request).rejects.toThrow(
-      'Unexpected error returned by the StormGlass service: Error: {"errors":["Rate Limit reached"]} Code: 429'
+      'Unexpected error returned from StormGlass service: Error: {"errors":["Rate Limit reached"]} Code: 429'
     )
   })
 })

@@ -3,7 +3,6 @@ import stormGlassNormalizedData from '../../../tests/fixtures/stormglass-normali
 import { BeachModel, BeachPosition } from '../../domain/models/beach'
 import { ForecastService } from './forecast-service'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
-import { AddBeachModel } from '@src/domain/usecases/add-beach'
 
 jest.mock('../../client/storm-glass.ts')
 
@@ -89,13 +88,13 @@ describe('Forecast Service', () => {
     ]
 
     const forecast = new ForecastService(mockedStormGlassClient)
-    const beachesWithRating = await forecast.processForecastForBeaches(beaches)
+    const beachesWithRating = await forecast.processByBeaches(beaches)
     expect(beachesWithRating).toEqual(expectedResponse)
   })
 
   it('Should return an empty list when beaches array is empty', async () => {
     const forecastService = new ForecastService()
-    const response = await forecastService.processForecastForBeaches([])
+    const response = await forecastService.processByBeaches([])
     expect(response).toEqual(response)
   })
 
@@ -105,7 +104,7 @@ describe('Forecast Service', () => {
     )
 
     const forecast = new ForecastService(mockedStormGlassClient)
-    await expect(forecast.processForecastForBeaches(beaches)).rejects.toThrow(
+    await expect(forecast.processByBeaches(beaches)).rejects.toThrow(
       ForecastInternalProcessingError
     )
   })
