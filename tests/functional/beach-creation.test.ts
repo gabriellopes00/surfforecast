@@ -7,20 +7,22 @@ const makeSut = () => {
   const beachData: AddBeachModel = {
     lat: -33.792726,
     lng: 151.289824,
-    name: 'Beach1',
+    name: 'Manly',
     position: BeachPosition.E
   }
   const sut = new MongoBeachRepository()
   return { sut, beachData }
 }
 
-describe('Mongo Beach Repository', () => {
+describe('Mongo Beach Repository functional tests', () => {
   beforeAll(async () => await Beach.deleteMany({}))
+  afterAll(async () => await Beach.deleteMany({}))
 
-  test('Should stores an account on success', async () => {
+  it('Should stores an account on success', async () => {
     const { sut, beachData } = makeSut()
     await sut.add(beachData)
-    const result = await Beach.findOne({ name: 'Beach1' })
+
+    const result = await Beach.findOne({ name: 'Manly' })
     expect(result).toBeTruthy()
   })
 })

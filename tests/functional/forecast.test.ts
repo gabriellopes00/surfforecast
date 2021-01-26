@@ -17,6 +17,7 @@ describe('Beach forecast functional tests', () => {
     const beach = new Beach(defaultBeach)
     await beach.save()
   })
+  afterAll(async () => await Beach.deleteMany({}))
 
   it('Should return a forecast with jest a few times', async () => {
     nock('https://api.stormglass.io:443', {
@@ -52,7 +53,6 @@ describe('Beach forecast functional tests', () => {
       .replyWithError('Something went wrong')
 
     const { status } = await global.testRequest.get(`/forecast`)
-
     expect(status).toBe(500)
   })
 })

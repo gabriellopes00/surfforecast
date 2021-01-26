@@ -1,8 +1,8 @@
-import { AddBeachModel } from '@src/domain/usecases/add-beach'
 import { Beach } from '../../src/infra/db/beaches/beach-model'
 
 describe('Beaches functional tests', () => {
   beforeAll(async () => await Beach.deleteMany({}))
+  afterAll(async () => await Beach.deleteMany({}))
 
   describe('When creating a beach ', () => {
     const newBeach = {

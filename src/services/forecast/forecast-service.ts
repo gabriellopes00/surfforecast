@@ -25,7 +25,6 @@ export class ForecastService implements ProcessForecast {
       }
       return this.mapForecastByTime(pointsSources)
     } catch (error) {
-      console.log(error)
       throw new ForecastInternalProcessingError(error.message)
     }
   }

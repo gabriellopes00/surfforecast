@@ -8,7 +8,6 @@ jest.mock('../utils/implementations/request')
 describe('StormGlass client', () => {
   // Will unite the Requests types and method with the jest types and methods (mocks)
   const mockedRequest = new HTTPUtils.Request() as jest.Mocked<HTTPUtils.Request>
-
   const MockedRequestClass = HTTPUtils.Request as jest.Mocked<
     typeof HTTPUtils.Request
   >
@@ -23,7 +22,6 @@ describe('StormGlass client', () => {
     } as HTTPUtils.Response)
     const stormGlass = new StormGlassClient(mockedRequest)
     const response = await stormGlass.fetchPoints(lat, lng)
-
     expect(response).toEqual(stormGlassNormalizedData)
   })
 
