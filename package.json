@@ -1,5 +1,5 @@
 {
-  "name": "surfcast",
+  "name": "surfforecast",
   "version": "1.0.0",
   "description": "A forecast api that provide a better forecast for surf, made with Nodejs, Typescript and TDD",
   "main": "src/server",

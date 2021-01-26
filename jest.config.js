@@ -3,7 +3,7 @@ const root = resolve(__dirname)
 
 module.exports = {
   rootDir: root,
-  displayName: 'root-tests',
+  displayName: 'unit-tests',
   testEnvironment: 'node',
   collectCoverageFrom: [
     '<rootDir>/**/*.ts',
