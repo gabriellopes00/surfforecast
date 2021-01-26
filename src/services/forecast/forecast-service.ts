@@ -1,4 +1,4 @@
-import { ForecastPoint } from '@src/client/interfaces/forecast'
+import { ForecastPoint } from '../../client/interfaces/forecast'
 import { StormGlassClient } from '../../client/storm-glass'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
 import { BeachModel } from '../../domain/models/beach'
@@ -21,8 +21,8 @@ export class ForecastService {
         )
         const enrichedData = this.enrichedData(points, beach)
         pointsSources.push(...enrichedData)
-        return this.mapForecastByTime(pointsSources)
       }
+      return this.mapForecastByTime(pointsSources)
     } catch (error) {
       throw new ForecastInternalProcessingError(error.message)
     }

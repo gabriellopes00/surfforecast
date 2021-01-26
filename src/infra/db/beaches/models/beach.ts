@@ -1,4 +1,4 @@
-import { BeachModel } from '@src/domain/models/beach'
+import { BeachModel } from '../../../../domain/models/beach'
 import mongoose, { Document, Model } from 'mongoose'
 
 const schema = new mongoose.Schema(

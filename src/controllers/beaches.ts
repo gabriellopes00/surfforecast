@@ -1,5 +1,5 @@
 import { Controller, Post } from '@overnightjs/core'
-import { Beach } from '@src/infra/db/beaches/models/beach'
+import { Beach } from '../infra/db/beaches/models/beach'
 import { Request, Response } from 'express'
 import mongoose from 'mongoose'
 

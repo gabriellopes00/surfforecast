@@ -5,7 +5,7 @@ let server: SetupServer
 
 beforeAll(async () => {
   server = new SetupServer()
-  await server.start()
+  await server.init()
   global.testRequest = supertest(server.getApp())
 })
 

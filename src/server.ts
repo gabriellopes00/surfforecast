@@ -34,9 +34,15 @@ export class SetupServer extends Server {
     await db.close()
   }
 
-  public async start(): Promise<void> {
+  public async init(): Promise<void> {
     this.expressSetup()
     this.controllersSetup()
     await this.databaseSetup()
+  }
+
+  public start(): void {
+    this.app.listen(this.port, () =>
+      console.log(`Server running at http://localhost:${this.port}`)
+    )
   }
 }

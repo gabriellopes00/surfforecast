@@ -1,4 +1,4 @@
-import { Beach } from '@src/infra/db/beaches/models/beach'
+import { Beach } from '../../src/infra/db/beaches/models/beach'
 
 describe('Beaches functional tests', () => {
   beforeAll(async () => await Beach.deleteMany({}))

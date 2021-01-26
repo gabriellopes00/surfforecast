@@ -1,5 +1,5 @@
-import { BeachPosition } from '@src/domain/models/beach'
-import { Beach } from '@src/infra/db/beaches/models/beach'
+import { BeachPosition } from '../../src/domain/models/beach'
+import { Beach } from '../../src/infra/db/beaches/models/beach'
 import stormGlassWeather from '../../tests/fixtures/stormglass-weather-response.json'
 import apiForecastResponse from '../fixtures/api-forecast-response.json'
 
