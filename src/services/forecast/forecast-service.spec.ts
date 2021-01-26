@@ -3,6 +3,7 @@ import stormGlassNormalizedData from '../../../tests/fixtures/stormglass-normali
 import { BeachModel, BeachPosition } from '../../domain/models/beach'
 import { ForecastService } from './forecast-service'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
+import { AddBeachModel } from '@src/domain/usecases/add-beach'
 
 jest.mock('../../client/storm-glass.ts')
 
@@ -14,7 +15,8 @@ describe('Forecast Service', () => {
       lat: -33.792726,
       lng: 151.289824,
       name: 'Manly',
-      position: BeachPosition.E
+      position: BeachPosition.E,
+      id: 'any_id'
     }
   ]
 
