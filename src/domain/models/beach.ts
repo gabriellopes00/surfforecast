@@ -6,7 +6,7 @@ export enum BeachPosition {
 }
 
 export interface BeachModel {
-  id?: string
+  id: string
   name: string
   lat: number
   lng: number
