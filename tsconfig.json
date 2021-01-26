@@ -5,7 +5,7 @@
     "lib": ["es6"],
     "allowJs": true,
     "outDir": "./dist",
-    "rootDirs": ["./src/", "./tests/"],
+    "rootDir": "./",
     "sourceMap": true,
     "removeComments": true,
     "typeRoots": ["./node_modules/@types", "./@types"],
@@ -18,9 +18,10 @@
     "baseUrl": ".",
     "paths": {
       "@tests/*": ["./tests/*"],
+      "@config/*": ["./config/*"],
       "@src/*": ["./src/*"]
     }
   },
-  "include": ["./src/**/*", "./tests/**/*"],
+  "include": ["./src/**/*", "./tests/**/*", "./config/**/*"],
   "exclude": ["./node_modules/", "dist/"]
 }

@@ -1,11 +1,21 @@
 {
-  "name": "surfing-app",
+  "name": "surfcast",
   "version": "1.0.0",
-  "description": "A surf api made with Nodejs, Typescript and TDD",
+  "description": "A forecast api that provide a better forecast for surf, made with Nodejs, Typescript and TDD",
   "main": "src/server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabriellopes00/surfing-app.git"
+  },
+  "author": "Gabriel Lopes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabriellopes00/surfing-app/issues"
+  },
+  "homepage": "https://github.com/gabriellopes00/surfing-app#readme",
   "scripts": {
     "start": "node ./dist/src/index.js",
-    "build": "rimraf ./dist && tsc",
+    "build": "rimraf ./dist && tsc -p tsconfig-build.json",
     "lint": "eslint ./src ./tests --ext .ts",
     "lint:fix": "eslint ./src ./tests --ext .ts --fix",
     "style": "prettier --check ./**/*.ts",
@@ -13,22 +23,13 @@
     "dev": "ts-node-dev  --respawn --transpile-only --ignore-watch node_modules --no-notify ./src/index.ts",
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
     "test:cache": "jest --clearCache",
-    "test:ci": "yarn test --coverage",
+    "test:ci": "yarn test:full --coverage",
     "test:watch": "yarn test --watch",
     "test:verbose": "jest --passWithNoTests --runInBand",
-    "test:func": "yarn test:watch --projects ./tests",
-    "test:unit": "yarn test -c jest-unit.config.js"
+    "test:func": "yarn test --projects ./tests",
+    "test:unit": "yarn test -c jest-unit.config.js",
+    "test:full": "yarn test:unit && yarn test:func"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gabriellopes00/surfing-app.git"
-  },
-  "author": "Gabriel Lopes",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gabriellopes00/surfing-app/issues"
-  },
-  "homepage": "https://github.com/gabriellopes00/surfing-app#readme",
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/express": "^4.17.11",
