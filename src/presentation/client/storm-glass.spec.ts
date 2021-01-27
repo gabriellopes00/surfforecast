@@ -1,9 +1,9 @@
 import { StormGlassClient } from './storm-glass'
-import stormGlassWeather from '../../tests/fixtures/stormglass-weather-response.json'
-import stormGlassNormalizedData from '../../tests/fixtures/stormglass-normalized-response.json'
-import * as HTTPUtils from '../utils/implementations/request'
+import stormGlassWeather from '../../../tests/fixtures/stormglass-weather-response.json'
+import stormGlassNormalizedData from '../../../tests/fixtures/stormglass-normalized-response.json'
+import * as HTTPUtils from '../../utils/implementations/request'
 
-jest.mock('../utils/implementations/request')
+jest.mock('../../utils/implementations/request')
 
 describe('StormGlass client', () => {
   // Will unite the Requests types and method with the jest types and methods (mocks)

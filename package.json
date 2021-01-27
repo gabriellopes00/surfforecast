@@ -24,8 +24,7 @@
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
     "test:cache": "jest --clearCache",
     "test:ci": "yarn test:full --coverage",
-    "test:watch": "yarn test --watch",
-    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:watch": "yarn test:full --watch",
     "test:func": "yarn test --projects ./tests",
     "test:unit": "yarn test -c jest-unit.config.js",
     "test:full": "yarn test:unit && yarn test:func"

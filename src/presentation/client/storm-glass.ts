@@ -1,8 +1,8 @@
-import { stormGlassUrl, stormGlassToken } from '../../config/env'
+import { stormGlassUrl, stormGlassToken } from '../../../config/env'
 import { StormGlassRequestError } from './errors/stormglass-request-error'
 import { StormGlassResponseError } from './errors/stormglass-response-error'
 import { ForecastPoint } from '@src/domain/models/forecast'
-import * as HTTPUtils from '../utils/implementations/request'
+import * as HTTPUtils from '../../utils/implementations/request'
 import {
   StormGlassForecastResponse,
   StormGlassPoint
@@ -10,9 +10,9 @@ import {
 import { ForecastClient } from '@src/domain/usecases/forecast/fetch-points'
 
 export class StormGlassClient implements ForecastClient {
+  private readonly stormGlassAPISource = 'noaa'
   private readonly stormGlassAPIParams =
     'swellDirection,swellHeight,swellPeriod,waveDirection,waveHeight,windDirection,windSpeed'
-  private readonly stormGlassAPISource = 'noaa'
 
   constructor(protected request = new HTTPUtils.Request()) {}
 

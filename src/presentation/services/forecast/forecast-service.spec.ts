@@ -1,9 +1,9 @@
 import { StormGlassClient } from '../../client/storm-glass'
-import { BeachModel, BeachPosition } from '../../domain/models/beach'
+import { BeachModel, BeachPosition } from '../../../domain/models/beach'
 import { ForecastService } from './forecast-service'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
-import stormGlassNormalizedData from '../../../tests/fixtures/stormglass-normalized-response.json'
-import apiExpectedResponse from '../../../tests/fixtures/api-forecast-response.json'
+import stormGlassNormalizedData from '../../../../tests/fixtures/stormglass-normalized-response.json'
+import apiExpectedResponse from '../../../../tests/fixtures/api-forecast-response.json'
 
 jest.mock('../../client/storm-glass.ts')
 

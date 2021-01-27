@@ -1,10 +1,10 @@
 import { ForecastPoint } from '@src/domain/models/forecast'
 import { StormGlassClient } from '../../client/storm-glass'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
-import { BeachModel } from '../../domain/models/beach'
-import { BeachForecast, TimeForecast } from '../../domain/models/forecast'
+import { BeachModel } from '../../../domain/models/beach'
+import { BeachForecast, TimeForecast } from '../../../domain/models/forecast'
 import { AddBeachModel } from '@src/domain/usecases/add-beach'
-import { ProcessForecast } from '../../domain/usecases/forecast/process-forecast'
+import { ProcessForecast } from '../../../domain/usecases/forecast/process-forecast'
 
 export class ForecastService implements ProcessForecast {
   constructor(protected readonly stormGlass = new StormGlassClient()) {}
