@@ -1,6 +1,6 @@
-import { UserModel } from '../../domain/models/user'
-import { AddUserModel } from '../../domain/usecases/add-user'
-import { AddUserRepository } from '../interfaces/add-user-repository'
+import { UserModel } from '../../../domain/models/user'
+import { AddUserModel } from '../../../domain/usecases/add-user'
+import { AddUserRepository } from '../../interfaces/add-user-repository'
 import { DbAddUser } from './db-add-user'
 
 class AddUserRepositoryStub implements AddUserRepository {

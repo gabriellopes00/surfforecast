@@ -9,7 +9,8 @@ module.exports = {
     '<rootDir>/**/*.ts',
     '!<rootDir>/**/*.d.ts',
     '!<rootDir>/**/*-interface.ts',
-    '!**/interfaces/**'
+    '!**/interfaces/**',
+    '!**/domain/**'
   ],
   coverageDirectory: './coverage',
   coverageProvider: 'v8',

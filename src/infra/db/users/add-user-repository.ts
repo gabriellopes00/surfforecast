@@ -13,7 +13,7 @@ export class MongoUserRepository implements AddUserRepository {
     const user: UserModel = {
       name: result.name,
       email: result.email,
-      password: result.email,
+      password: result.password,
       id: result.id
     }
     return user
