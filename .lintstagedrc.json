@@ -1,7 +1,7 @@
 {
   "*.ts": [
-    "yarn test:unit",
     "yarn lint:fix",
-    "yarn style:fix"
+    "yarn style:fix",
+    "yarn test:unit"
   ]
 }

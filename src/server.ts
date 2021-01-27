@@ -3,8 +3,8 @@ import { Server } from '@overnightjs/core'
 import express, { Application } from 'express'
 import * as db from './infra/db/helpers/mongoose'
 
-import { ForecastController } from './controllers/forecast'
-import { BeachController } from './controllers/beaches'
+import { ForecastController } from './presentation/controllers/forecast'
+import { BeachController } from './presentation/controllers/beaches'
 
 import { MongoBeachRepository } from './infra/db/beaches/add-beach-repository'
 import { DbAddBeach } from './data/usecases/db-add-beach'
