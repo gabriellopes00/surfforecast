@@ -22,7 +22,7 @@ describe('Mongo Beach Repository functional tests', () => {
     const { sut, beachData } = makeSut()
     await sut.add(beachData)
 
-    const result = await Beach.findOne({ name: 'Manly' })
+    const result = await Beach.find()
     expect(result).toBeTruthy()
   })
 })

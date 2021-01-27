@@ -14,7 +14,10 @@ module.exports = {
   coverageDirectory: './coverage',
   coverageProvider: 'v8',
   clearMocks: true,
-  preset: 'ts-jest',
+  preset: '@shelf/jest-mongodb',
+  transform: {
+    '.+\\.ts$': 'ts-jest'
+  },
   moduleNameMapper: {
     '@src/(.*)': '<rootDir>/src/$1',
     '@tests/(.*)': '<rootDir>/tests/$1',
