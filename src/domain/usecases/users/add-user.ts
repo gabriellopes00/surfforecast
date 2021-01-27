@@ -1,4 +1,4 @@
-import { UserModel } from '../models/user'
+import { UserModel } from '../../models/user'
 
 export type AddUserModel = Omit<UserModel, 'id'>
 export interface AddUser {

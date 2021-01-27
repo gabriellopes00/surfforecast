@@ -1,4 +1,4 @@
-import { BeachModel } from '../models/beach'
+import { BeachModel } from '../../models/beach'
 
 export type AddBeachModel = Omit<BeachModel, 'id'>
 export interface AddBeach {

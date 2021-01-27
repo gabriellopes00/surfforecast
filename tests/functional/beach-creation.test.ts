@@ -1,7 +1,7 @@
 import { BeachPosition } from '@src/domain/models/beach'
-import { AddBeachModel } from '@src/domain/usecases/add-beach'
+import { AddBeachModel } from '@src/domain/usecases/beaches/add-beach'
 import { Beach } from '@src/infra/db/beaches/beach-model'
-import { MongoBeachRepository } from '@src/infra/db/beaches/add-beach-repository'
+import { MongoBeachRepository } from '@src/infra/db/beaches/beach-repository'
 
 const makeSut = () => {
   const beachData: AddBeachModel = {

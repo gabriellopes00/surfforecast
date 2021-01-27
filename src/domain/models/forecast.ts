@@ -1,4 +1,4 @@
-import { AddBeachModel } from '../usecases/add-beach'
+import { AddBeachModel } from '../usecases/beaches/add-beach'
 
 export interface ForecastPoint {
   time: string

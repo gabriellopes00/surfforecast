@@ -1,5 +1,5 @@
 import mongoose, { Document, Model } from 'mongoose'
-import { AddBeachModel } from '../../../domain/usecases/add-beach'
+import { AddBeachModel } from '../../../domain/usecases/beaches/add-beach'
 
 const schema = new mongoose.Schema(
   {

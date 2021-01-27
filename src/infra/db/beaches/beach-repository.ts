@@ -1,5 +1,5 @@
 import { BeachModel } from '@src/domain/models/beach'
-import { AddBeachModel } from '@src/domain/usecases/add-beach'
+import { AddBeachModel } from '@src/domain/usecases/beaches/add-beach'
 import { AddBeachRepository } from '../../../data/interfaces/add-beach-repository'
 import { Beach } from './beach-model'
 

@@ -1,5 +1,5 @@
 import { Controller, Post } from '@overnightjs/core'
-import { AddUser } from '@src/domain/usecases/add-user'
+import { AddUser } from '@src/domain/usecases/users/add-user'
 import { Response, Request } from 'express'
 
 @Controller('users')

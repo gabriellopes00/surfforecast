@@ -1,5 +1,5 @@
 import mongoose, { Document, Model } from 'mongoose'
-import { AddUserModel } from '@src/domain/usecases/add-user'
+import { AddUserModel } from '@src/domain/usecases/users/add-user'
 
 const schema = new mongoose.Schema(
   {

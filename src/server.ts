@@ -6,11 +6,11 @@ import * as db from './infra/db/helpers/mongoose'
 import { ForecastController } from './presentation/controllers/forecast'
 import { BeachController } from './presentation/controllers/beaches'
 
-import { MongoBeachRepository } from './infra/db/beaches/add-beach-repository'
+import { MongoBeachRepository } from './infra/db/beaches/beach-repository'
 import { DbAddBeach } from './data/usecases/beaches/db-add-beach'
 import { UsersController } from './presentation/controllers/users'
 
-import { MongoUserRepository } from './infra/db/users/add-user-repository'
+import { MongoUserRepository } from './infra/db/users/user-repository'
 import { DbAddUser } from './data/usecases/users/db-add-user'
 
 export class SetupServer extends Server {
@@ -25,10 +25,12 @@ export class SetupServer extends Server {
   private controllersSetup(): void {
     const forecastController = new ForecastController()
 
+    // UsersController
     const mognoUserRepository = new MongoUserRepository()
     const dbAddUser = new DbAddUser(mognoUserRepository)
     const usersController = new UsersController(dbAddUser)
 
+    // BeachesController
     const mongoBeachRepository = new MongoBeachRepository()
     const dbAddBeach = new DbAddBeach(mongoBeachRepository)
     const beachController = new BeachController(dbAddBeach)
