@@ -2,7 +2,7 @@ import { stormGlassUrl, stormGlassToken } from '../../../config/env'
 import { StormGlassRequestError } from './errors/stormglass-request-error'
 import { StormGlassResponseError } from './errors/stormglass-response-error'
 import { ForecastPoint } from '@src/domain/models/forecast'
-import * as HTTPUtils from '../../utils/implementations/request'
+import * as HTTPUtils from '../helpers/axios/request'
 import {
   StormGlassForecastResponse,
   StormGlassPoint

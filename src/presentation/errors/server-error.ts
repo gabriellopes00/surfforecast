@@ -1,7 +1,7 @@
-export class InternalError extends Error {
+export class ServerError extends Error {
   constructor(
     public message: string,
-    protected code: number = 500,
+    protected readonly code: number = 500,
     protected description?: string
   ) {
     super(message)

@@ -1,6 +1,6 @@
-import { InternalError } from '../../../utils/errors/internal-error'
+import { ServerError } from '../../errors/server-error'
 
-export class StormGlassResponseError extends InternalError {
+export class StormGlassResponseError extends ServerError {
   constructor(message: string) {
     const internalMessage = 'Unexpected error returned from StormGlass service'
     super(`${internalMessage}: ${message}`)
