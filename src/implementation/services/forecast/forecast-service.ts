@@ -1,5 +1,5 @@
 import { ForecastPoint } from '@src/domain/models/forecast'
-import { StormGlassClient } from '../../client/storm-glass'
+import { StormGlassClient } from '../../../presentation/client/storm-glass'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
 import { BeachModel } from '../../../domain/models/beach'
 import { BeachForecast, TimeForecast } from '../../../domain/models/forecast'

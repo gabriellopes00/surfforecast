@@ -1,4 +1,4 @@
-import { ServerError } from '../../../errors/server-error'
+import { ServerError } from '../../../../presentation/errors/server-error'
 
 export class ForecastInternalProcessingError extends ServerError {
   constructor(public readonly message: string) {
