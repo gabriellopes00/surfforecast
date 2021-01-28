@@ -1,16 +1,13 @@
 import { Controller, Post } from '@overnightjs/core'
 import { AddUser } from '@src/domain/usecases/users/add-user'
 import { Validation } from '@src/implementation/interfaces/validation/validation'
-import { compare, generateToken, User } from '@src/infra/db/users/user-model'
+import { compare, generateToken, User } from '../../infra/db/users/user-model'
 import { Response, Request } from 'express'
 import { BaseController } from './index'
 
 @Controller('users')
 export class UsersController extends BaseController {
-  constructor(
-    private readonly addUser: AddUser,
-    private readonly validation: Validation
-  ) {
+  constructor(private readonly addUser: AddUser) {
     super()
   }
 

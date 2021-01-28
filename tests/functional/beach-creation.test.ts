@@ -1,14 +1,15 @@
 import { BeachPosition } from '@src/domain/models/beach'
-import { AddBeachModel } from '@src/domain/usecases/beaches/add-beach'
+import { UserBeachModel } from '@src/domain/usecases/beaches/add-beach'
 import { Beach } from '@src/infra/db/beaches/beach-model'
 import { MongoBeachRepository } from '@src/infra/db/beaches/beach-repository'
 
 const makeSut = () => {
-  const beachData: AddBeachModel = {
+  const beachData: UserBeachModel = {
     lat: -33.792726,
     lng: 151.289824,
     name: 'Manly',
-    position: BeachPosition.E
+    position: BeachPosition.E,
+    user: '6012fe2e4425d7ba95b27ed3'
   }
   const sut = new MongoBeachRepository()
   return { sut, beachData }

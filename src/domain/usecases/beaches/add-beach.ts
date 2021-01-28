@@ -1,6 +1,10 @@
 import { BeachModel } from '../../models/beach'
 
-export type AddBeachModel = Omit<BeachModel, 'id'>
+export interface AddBeachModel extends Omit<BeachModel, 'id'> {}
+
+export interface UserBeachModel extends AddBeachModel {
+  user: string
+}
 export interface AddBeach {
-  add(beachData: AddBeachModel): Promise<BeachModel>
+  add(beachData: UserBeachModel): Promise<BeachModel>
 }

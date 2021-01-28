@@ -3,6 +3,7 @@ import { AddUserModel } from '@src/domain/usecases/users/add-user'
 
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { UserModel } from '@src/domain/models/user'
 
 const schema = new mongoose.Schema(
   {
@@ -60,6 +61,14 @@ export function generateToken(payload: any): string {
   return jwt.sign(payload, 'test', {
     expiresIn: 10000
   })
+}
+
+export interface DecodedUser extends Omit<UserModel, '_id'> {
+  id: string
+}
+
+export function decodeToken(token: string): DecodedUser {
+  return jwt.verify(token, 'test') as DecodedUser
 }
 
 export interface UserSchema extends AddUserModel, Document {}

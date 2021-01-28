@@ -1,3 +1,5 @@
+import { AddUserModel } from '@src/domain/usecases/users/add-user'
+
 export interface Validation {
-  validate(data: any): boolean
+  validate(data: AddUserModel): boolean
 }
