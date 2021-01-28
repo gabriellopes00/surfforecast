@@ -2,7 +2,7 @@ import 'dotenv/config'
 
 export const port = process.env.PORT
 export const stormGlassToken = process.env.STORM_GLASS_TOKEN
-export const stormGlassUrl = 'https://api.stormglass.io/v2'
+export const stormGlassUrl = process.env.STORM_GLASS_API_URL
 export const mongoUrl =
   process.env.MONGO_URL || 'mongodb://localhost:27017/surfforecast'
 
