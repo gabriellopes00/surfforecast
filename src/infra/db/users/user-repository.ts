@@ -1,4 +1,4 @@
-import { AddUserRepository } from '@src/data/interfaces/add-user-repository'
+import { AddUserRepository } from '@src/implementation/interfaces/add-user-repository'
 import { BeachModel } from '@src/domain/models/beach'
 import { UserModel } from '@src/domain/models/user'
 import { AddUserModel } from '@src/domain/usecases/users/add-user'

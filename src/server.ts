@@ -7,11 +7,11 @@ import { ForecastController } from './presentation/controllers/forecast'
 import { BeachController } from './presentation/controllers/beaches'
 
 import { MongoBeachRepository } from './infra/db/beaches/beach-repository'
-import { DbAddBeach } from './data/usecases/beaches/db-add-beach'
+import { DbAddBeach } from './implementation/usecases/beaches/db-add-beach'
 import { UsersController } from './presentation/controllers/users'
 
 import { MongoUserRepository } from './infra/db/users/user-repository'
-import { DbAddUser } from './data/usecases/users/db-add-user'
+import { DbAddUser } from './implementation/usecases/users/db-add-user'
 
 export class SetupServer extends Server {
   constructor(private readonly port = env.port) {
