@@ -23,6 +23,17 @@ This is an API made with Node.js, Typescript and Mongodb, witch the users can re
 
 You'll need [Node.js](https://nodejs.org), [Mongodb](https://www.mongodb.com/) and i recommend that you have installed the [Yarn](https://yarnpkg.com/getting-started/install). After, you can run the scripts below...
 
+#### Project structure ⚙
+
+- _**config**_ ❯ specifics configuration files
+- _**src**_ ❯ main application code (layers)
+  - _**domain**_ ❯ application models and usecases
+  - _**implementation**_ ❯ application internal usecases implementations
+  - _**infra**_ ❯ external libs implementations
+  - _**presentation**_ ❯ layer witch communicates the application with external environment
+- _**tests**_ ❯ functional tests code
+- _**./**_ ❯ general configuration files
+
 ###### Database | Docker 🐳
 
 If you don't have [mongodb server](https://www.mongodb.com/) installed locally, you can run the database with [docker](https://www.docker.com/). With the command below, a [mongo image](https://hub.docker.com/_/mongo) will be pulled, and mongodb will be started at port _27017_ into your _localhost_, in a container called _surfforecast-mongo_.

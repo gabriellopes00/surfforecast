@@ -1,6 +1,6 @@
 import { BeachModel } from '@src/domain/models/beach'
 import { AddBeachModel } from '@src/domain/usecases/beaches/add-beach'
-import { AddBeachRepository } from '../../../implementation/interfaces/add-beach-repository'
+import { AddBeachRepository } from '../../../implementation/interfaces/beaches/add-beach-repository'
 import { Beach } from './beach-model'
 
 // Tested together functional tests

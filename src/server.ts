@@ -12,6 +12,7 @@ import { UsersController } from './presentation/controllers/users'
 
 import { MongoUserRepository } from './infra/db/users/user-repository'
 import { DbAddUser } from './implementation/usecases/users/db-add-user'
+import { UserValidation } from './implementation/usecases/validation/validation'
 
 export class SetupServer extends Server {
   constructor(private readonly port = env.port) {
@@ -28,7 +29,8 @@ export class SetupServer extends Server {
     // UsersController
     const mognoUserRepository = new MongoUserRepository()
     const dbAddUser = new DbAddUser(mognoUserRepository)
-    const usersController = new UsersController(dbAddUser)
+    const validation = new UserValidation()
+    const usersController = new UsersController(dbAddUser, validation)
 
     // BeachesController
     const mongoBeachRepository = new MongoBeachRepository()

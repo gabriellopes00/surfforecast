@@ -1,6 +1,6 @@
 import { BeachModel, BeachPosition } from '../../../domain/models/beach'
 import { AddBeachModel } from '../../../domain/usecases/beaches/add-beach'
-import { AddBeachRepository } from '../../interfaces/add-beach-repository'
+import { AddBeachRepository } from '../../interfaces/beaches/add-beach-repository'
 import { DbAddBeach } from './db-add-beach'
 
 class AddBeachRepositoryStub implements AddBeachRepository {

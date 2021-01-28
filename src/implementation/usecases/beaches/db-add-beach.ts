@@ -1,6 +1,6 @@
 import { BeachModel } from '@src/domain/models/beach'
 import { AddBeach, AddBeachModel } from '@src/domain/usecases/beaches/add-beach'
-import { AddBeachRepository } from '../../interfaces/add-beach-repository'
+import { AddBeachRepository } from '../../interfaces/beaches/add-beach-repository'
 
 export class DbAddBeach implements AddBeach {
   constructor(private readonly addBeachRepository: AddBeachRepository) {}

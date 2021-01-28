@@ -17,6 +17,18 @@ const schema = new mongoose.Schema(
     }
   }
 )
+export enum VALIDATION {
+  DUPLICATED = 'DUPLICATED'
+}
+
+schema.path('email').validate(
+  async (email: string) => {
+    const emailCount = await mongoose.models.User.countDocuments({ email })
+    return !emailCount
+  },
+  'already exists in the database.',
+  VALIDATION.DUPLICATED
+)
 
 export interface UserSchema extends AddUserModel, Document {}
 export const User: Model<UserSchema> = mongoose.model('User', schema)
