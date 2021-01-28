@@ -2,6 +2,7 @@ import mongoose, { Document, Model } from 'mongoose'
 import { AddUserModel } from '@src/domain/usecases/users/add-user'
 
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const schema = new mongoose.Schema(
   {
@@ -53,6 +54,12 @@ export async function compare(
   hash: string
 ): Promise<boolean> {
   return await bcrypt.compare(password, hash)
+}
+
+export function generateToken(payload: any): string {
+  return jwt.sign(payload, 'test', {
+    expiresIn: 10000
+  })
 }
 
 export interface UserSchema extends AddUserModel, Document {}
