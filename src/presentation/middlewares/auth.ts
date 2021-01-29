@@ -1,5 +1,15 @@
-import { decodeToken } from '../../infra/db/users/user-model'
+import { UserModel } from '../../domain/models/user'
 import { NextFunction, Request, Response } from 'express'
+import jwt from 'jsonwebtoken'
+import { secretKey } from '../../../config/env'
+
+export interface DecodedUser extends Omit<UserModel, '_id'> {
+  id: string
+}
+
+export function decodeToken(token: string): DecodedUser {
+  return jwt.verify(token, secretKey) as DecodedUser
+}
 
 export function AuthMiddleware(
   req: Partial<Request>,
@@ -12,6 +22,6 @@ export function AuthMiddleware(
     req.decoded = decoded
     next()
   } catch (err) {
-    res.status?.(401).send({ code: 401, error: err.message })
+    res.status?.(401).send({ error: err.message })
   }
 }
