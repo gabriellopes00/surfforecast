@@ -9,7 +9,6 @@ const schema = new mongoose.Schema(
     position: { type: String, required: true },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
   },
-  // temp
   {
     toJSON: {
       transform: (_, ret): void => {

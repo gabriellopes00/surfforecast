@@ -4,9 +4,15 @@ import { RequiredFieldsValidation } from '../../implementation/validation/valida
 import { ValidationCompositor } from '../../implementation/validation/validators/validation-compositor'
 import { MongoUserRepository } from '../../infra/db/users/user-repository'
 import { UsersController } from '../../presentation/controllers/users'
+import { BcryptAdapter } from '../../infra/cryptography/bcrypt-adapter'
 
 const mognoUserRepository = new MongoUserRepository()
-const dbAddUser = new DbAddUser(mognoUserRepository, mognoUserRepository)
+const hasher = new BcryptAdapter(12)
+const dbAddUser = new DbAddUser(
+  hasher,
+  mognoUserRepository,
+  mognoUserRepository
+)
 
 const requiredFieldsValidation = new RequiredFieldsValidation([
   'name',

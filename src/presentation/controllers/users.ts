@@ -2,7 +2,12 @@ import { AddUser, AddUserModel } from '../../domain/usecases/users/add-user'
 import { compare, generateToken, User } from '../../infra/db/users/user-model'
 import { Response, Request } from 'express'
 import { Validation } from '../../implementation/validation/interfaces/validation'
-import { badRequest, forbidden, ok, serverError } from '../helpers/http/http'
+import {
+  badRequest,
+  created,
+  forbidden,
+  serverError
+} from '../helpers/http/http'
 import { EmailAlreadyInUseError } from '../errors/email-already-in-use'
 import { Controller } from '../interfaces/controller'
 import { HttpRequest } from '../helpers/http/protocols'
@@ -23,7 +28,7 @@ export class UsersController implements Controller {
       if (!user) return forbidden(new EmailAlreadyInUseError())
 
       delete user.password
-      return ok({ data: user })
+      return created({ data: user })
     } catch (error) {
       return serverError(error)
     }
