@@ -1,25 +1,25 @@
-import { ClassMiddleware, Controller, Get } from '@overnightjs/core'
 import { Beach } from '../../infra/db/beaches/beach-model'
 import { ForecastService } from '../../implementation/services/forecast/forecast-service'
-import { Request, Response } from 'express'
-import { AuthMiddleware } from '../middlewares/auth'
+import { Controller } from '../interfaces/controller'
+import { HttpRequest, HttpResponse } from '../interfaces/http'
+import { ok, serverError } from '../helpers/http/http'
+import { secretKey } from '../../config/env'
+import jwt from 'jsonwebtoken'
 
 const forecast = new ForecastService()
 
-@Controller('forecast')
-@ClassMiddleware(AuthMiddleware)
-export class ForecastController {
-  @Get('')
-  public async getForecastForLoggedUser(
-    req: Request,
-    res: Response
-  ): Promise<void> {
+export class ForecastController implements Controller {
+  public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const beaches = await Beach.find({ user: req.decoded.id })
+      const token = jwt.verify(
+        httpRequest.headers['access-token'],
+        secretKey
+      ) as { id: string }
+      const beaches = await Beach.find({ user: token.id })
       const forecastData = await forecast.processByBeaches(beaches)
-      res.status(200).send(forecastData)
+      return ok(forecastData)
     } catch (error) {
-      res.status(500).send({ error: 'Something went wrong' })
+      return serverError(error)
     }
   }
 }
