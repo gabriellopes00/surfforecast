@@ -11,4 +11,5 @@ export interface BeachModel {
   lat: number
   lng: number
   position: BeachPosition
+  user: string
 }

@@ -1,26 +1,22 @@
-import { ClassMiddleware, Controller, Post } from '@overnightjs/core'
-import { Request, Response } from 'express'
 import mongoose from 'mongoose'
 import { AddBeach } from '@src/domain/usecases/beaches/add-beach'
-import { AuthMiddleware } from '../middlewares/auth'
+import { Controller } from '../interfaces/controller'
+import { HttpRequest, HttpResponse } from '../interfaces/http'
+import { created, serverError } from '../helpers/http/http'
 
-@Controller('beach')
-@ClassMiddleware(AuthMiddleware)
-export class BeachController {
+export class BeachController implements Controller {
   constructor(private readonly addBeach: AddBeach) {}
 
-  @Post('')
-  public async create(req: Request, res: Response): Promise<void> {
+  public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
+      console.log(httpRequest)
       const result = await this.addBeach.add({
-        ...req.body,
-        user: req.decoded.id
+        ...httpRequest.body,
+        user: httpRequest.decoded
       })
-      res.status(201).send(result)
+      return created(result)
     } catch (error) {
-      if (error instanceof mongoose.Error.ValidationError) {
-        res.status(422).send({ error: error.message })
-      } else res.status(500).send({ error: 'Internal server error' })
+      return serverError(error)
     }
   }
 }

@@ -12,7 +12,8 @@ export class MongoBeachRepository implements AddBeachRepository {
       lat: result.lat,
       lng: result.lng,
       position: result.position,
-      id: result.id
+      id: result.id,
+      user: result.user
     }
     return beach
   }

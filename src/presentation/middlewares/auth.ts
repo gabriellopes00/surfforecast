@@ -19,7 +19,7 @@ export function AuthMiddleware(
   const token = req.headers?.['access-token']
   try {
     const decoded = decodeToken(token as string)
-    req.decoded = decoded
+    req.decoded = decoded.id
     next()
   } catch (err) {
     res.status?.(401).send({ error: err.message })
