@@ -47,7 +47,7 @@ describe('Bcrypt Adapter', () => {
     const hashPromise = sut.hash('value')
     await expect(hashPromise).rejects.toThrow()
   })
-  /* 
+
   // Hash-comparer method
   it('Should call compare with correct values', async () => {
     const { sut } = makeSut()
@@ -82,5 +82,5 @@ describe('Bcrypt Adapter', () => {
       )
     const isValid = sut.compare('any_value', 'any_hash')
     await expect(isValid).rejects.toThrow()
-  }) */
+  })
 })

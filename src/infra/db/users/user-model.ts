@@ -1,7 +1,6 @@
 import mongoose, { Document, Model } from 'mongoose'
-import { AddUserModel } from '@src/domain/usecases/users/add-user'
+import { AddUserModel } from '@src/domain/models/user'
 
-import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { UserModel } from '@src/domain/models/user'
 
@@ -23,19 +22,6 @@ const schema = new mongoose.Schema(
 )
 export enum VALIDATION {
   DUPLICATED = 'DUPLICATED'
-}
-
-export async function compare(
-  password: string,
-  hash: string
-): Promise<boolean> {
-  return await bcrypt.compare(password, hash)
-}
-
-export function generateToken(payload: any): string {
-  return jwt.sign(payload, 'test', {
-    expiresIn: 10000
-  })
 }
 
 export interface DecodedUser extends Omit<UserModel, '_id'> {

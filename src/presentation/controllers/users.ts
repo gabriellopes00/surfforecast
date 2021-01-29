@@ -1,4 +1,4 @@
-import { AddUser, AddUserModel } from '../../domain/usecases/users/add-user'
+import { AddUser } from '../../domain/usecases/users/add-user'
 import { compare, generateToken, User } from '../../infra/db/users/user-model'
 import { Response, Request } from 'express'
 import { Validation } from '../../implementation/validation/interfaces/validation'
@@ -11,6 +11,7 @@ import {
 import { EmailAlreadyInUseError } from '../errors/email-already-in-use'
 import { Controller } from '../interfaces/controller'
 import { HttpRequest } from '../helpers/http/protocols'
+import { AddUserModel } from '@src/domain/models/user'
 
 export class UsersController implements Controller {
   constructor(
