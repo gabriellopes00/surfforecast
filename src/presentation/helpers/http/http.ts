@@ -10,3 +10,8 @@ export const ok = <T = any>(data: T): HttpResponse<T> => ({
   statusCode: 200,
   body: data
 })
+
+export const badRequest = (error: Error): HttpResponse => ({
+  statusCode: 400,
+  body: error
+})
