@@ -1,3 +1,4 @@
+import { CompareFieldsValidation } from '../../implementation/validation/validators/compare-fields-validation'
 import { DbAddUser } from '../../implementation/usecases/users/db-add-user'
 import { RequiredFieldsValidation } from '../../implementation/validation/validators/required-fields-validation'
 import { ValidationCompositor } from '../../implementation/validation/validators/validation-compositor'
@@ -8,10 +9,18 @@ const mognoUserRepository = new MongoUserRepository()
 const dbAddUser = new DbAddUser(mognoUserRepository, mognoUserRepository)
 
 const requiredFieldsValidation = new RequiredFieldsValidation([
+  'name',
   'email',
   'password',
-  'email',
   'passwordConfirmation'
 ])
-const validation = new ValidationCompositor([requiredFieldsValidation])
+const compareFieldsValidation = new CompareFieldsValidation(
+  'password',
+  'passwordConfirmation'
+)
+
+const validation = new ValidationCompositor([
+  requiredFieldsValidation,
+  compareFieldsValidation
+])
 export const usersController = new UsersController(dbAddUser, validation)

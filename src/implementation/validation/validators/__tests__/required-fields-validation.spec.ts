@@ -12,7 +12,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('RequiredField Validation', () => {
-  test('Should return a MissingParamError if validation fails', () => {
+  it('Should return a MissingParamError if validation fails', () => {
     const { sut } = makeSut()
     const error = sut.validate({
       name: 'any_name',
@@ -22,7 +22,7 @@ describe('RequiredField Validation', () => {
     expect(error).toEqual(new MissingParamError('passwordConfirmation'))
   })
 
-  test('Should not return if validation succeeds', () => {
+  it('Should not return if validation succeeds', () => {
     const { sut } = makeSut()
     const error = sut.validate({
       name: 'any_name',

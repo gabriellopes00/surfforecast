@@ -1,25 +1,24 @@
-// import { Controller, Post } from '@overnightjs/core'
-import { AddUser } from '../../domain/usecases/users/add-user'
+import { AddUser, AddUserModel } from '../../domain/usecases/users/add-user'
 import { compare, generateToken, User } from '../../infra/db/users/user-model'
 import { Response, Request } from 'express'
 import { Validation } from '../../implementation/validation/interfaces/validation'
 import { badRequest, forbidden, ok, serverError } from '../helpers/http/http'
 import { EmailAlreadyInUseError } from '../errors/email-already-in-use'
+import { Controller } from '../interfaces/controller'
+import { HttpRequest } from '../helpers/http/protocols'
 
-// @Controller('users')
-export class UsersController {
+export class UsersController implements Controller {
   constructor(
     private readonly addUser: AddUser,
     private readonly validator: Validation
   ) {}
 
-  // @Post('')
-  public async handle(req: Request, res: Response) {
+  public async handle(httpRequest: HttpRequest<AddUserModel>) {
     try {
-      const error = this.validator.validate(req.body)
+      const error = this.validator.validate(httpRequest.body)
       if (error) return badRequest(error)
 
-      const { name, email, password } = req.body
+      const { name, email, password } = httpRequest.body
       const user = await this.addUser.add({ name, email, password })
       if (!user) return forbidden(new EmailAlreadyInUseError())
 
@@ -30,7 +29,6 @@ export class UsersController {
     }
   }
 
-  // @Post('auth')
   public async authenticate(req: Request, res: Response): Promise<Response> {
     const user = await User.findOne({ email: req.body.email })
     if (!user) {

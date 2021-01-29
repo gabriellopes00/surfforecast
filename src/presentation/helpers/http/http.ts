@@ -11,12 +11,12 @@ export const ok = <T = any>(data: T): HttpResponse<T> => ({
   body: data
 })
 
-export const badRequest = (error: Error): HttpResponse => ({
+export const badRequest = (error: Error): HttpResponse<Error> => ({
   statusCode: 400,
   body: error
 })
 
-export const forbidden = (error: Error): HttpResponse => ({
+export const forbidden = (error: Error): HttpResponse<Error> => ({
   statusCode: 403,
   body: error
 })
