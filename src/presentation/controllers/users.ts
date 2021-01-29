@@ -3,7 +3,8 @@ import { AddUser } from '@src/domain/usecases/users/add-user'
 import { compare, generateToken, User } from '../../infra/db/users/user-model'
 import { Response, Request } from 'express'
 import { Validation } from '@src/implementation/validation/interfaces/validation'
-import { badRequest } from '../helpers/http/http'
+import { badRequest, forbidden, ok, serverError } from '../helpers/http/http'
+import { EmailAlreadyInUseError } from '../errors/email-already-in-use'
 
 @Controller('users')
 export class UsersController {
@@ -18,10 +19,14 @@ export class UsersController {
       const error = this.validator.validate(req.body)
       if (error) return badRequest(error)
 
-      const result = await this.addUser.add(req.body)
-      res.status(201).send(result)
+      const { name, email, password } = req.body
+      const user = await this.addUser.add({ name, email, password })
+      if (!user) return forbidden(new EmailAlreadyInUseError())
+
+      delete user.password
+      return ok({ data: user })
     } catch (error) {
-      res.sendStatus(500)
+      return serverError(error)
     }
   }
 

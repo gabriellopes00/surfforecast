@@ -1,3 +1,4 @@
+import { LoadUserRepository } from '@src/implementation/interfaces/users/load-user-repository'
 import { UserModel } from '../../../domain/models/user'
 import { AddUserModel } from '../../../domain/usecases/users/add-user'
 import { AddUserRepository } from '../../interfaces/users/add-user-repository'
@@ -16,6 +17,12 @@ class AddUserRepositoryStub implements AddUserRepository {
   }
 }
 
+class LoadUserRepositoryStub implements LoadUserRepository {
+  async loadByEmail(email: string): Promise<UserModel> {
+    return new Promise(resolve => resolve(null))
+  }
+}
+
 const makeSut = () => {
   const userData: AddUserModel = {
     name: 'gabriel',
@@ -23,8 +30,9 @@ const makeSut = () => {
     password: 'gabriel123'
   }
   const addUserRepositoryStub = new AddUserRepositoryStub()
-  const sut = new DbAddUser(addUserRepositoryStub)
-  return { sut, addUserRepositoryStub, userData }
+  const loadUserRepository = new LoadUserRepositoryStub()
+  const sut = new DbAddUser(addUserRepositoryStub, loadUserRepository)
+  return { sut, addUserRepositoryStub, userData, loadUserRepository }
 }
 
 describe('DbAddUser tests', () => {
@@ -51,5 +59,30 @@ describe('DbAddUser tests', () => {
 
     const user = sut.add(userData)
     await expect(user).rejects.toThrow()
+  })
+
+  // LoadUserRepository tests
+  test('Should call LoadUserRepository with correct email', async () => {
+    const { sut, loadUserRepository, userData } = makeSut()
+    const loadByEmailSpy = jest.spyOn(loadUserRepository, 'loadByEmail')
+
+    await sut.add(userData)
+    expect(loadByEmailSpy).toHaveBeenCalledWith('gabriel@example.com')
+  })
+
+  test('Should null if loadUserRepository not returns null', async () => {
+    const { sut, loadUserRepository, userData } = makeSut()
+    jest.spyOn(loadUserRepository, 'loadByEmail').mockReturnValueOnce(
+      new Promise(resolve =>
+        resolve({
+          id: 'any_id',
+          name: 'gabriel',
+          email: 'gabriel@example.com',
+          password: 'gabriel123'
+        })
+      )
+    )
+    const user = await sut.add(userData)
+    expect(user).toBeNull()
   })
 })
