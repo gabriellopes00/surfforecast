@@ -1,7 +1,7 @@
 import { UserModel } from '../../domain/models/user'
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
-import { secretKey } from '../../../config/env'
+import { secretKey } from '../../config/env'
 
 export interface DecodedUser extends Omit<UserModel, '_id'> {
   id: string

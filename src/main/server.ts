@@ -1,5 +1,5 @@
 import { connect } from '../infra/db/helpers/mongoose'
-import { mongoUrl, port } from '../../config/env'
+import { mongoUrl, port } from '../config/env'
 
 connect()
   .then(async () => {

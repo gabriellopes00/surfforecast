@@ -8,7 +8,7 @@ import { MongoUserRepository } from '../../infra/db/users/user-repository'
 import { LoginController } from '../../presentation/controllers/login'
 import { Authentication } from '../../implementation/usecases/authentication/authentication'
 
-import { secretKey } from '../../../config/env'
+import { secretKey } from '../../config/env'
 
 const makeLoginValidation = (): ValidationCompositor => {
   const validations: Validation[] = []

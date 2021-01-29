@@ -1,5 +1,4 @@
 import { AddUser } from '../../domain/usecases/users/add-user'
-import { compare, generateToken, User } from '../../infra/db/users/user-model'
 import { Response, Request } from 'express'
 import { Validation } from '../../implementation/validation/interfaces/validation'
 import {
@@ -10,7 +9,7 @@ import {
 } from '../helpers/http/http'
 import { EmailAlreadyInUseError } from '../errors/email-already-in-use'
 import { Controller } from '../interfaces/controller'
-import { HttpRequest } from '../helpers/http/protocols'
+import { HttpRequest } from '../interfaces/http'
 import { AddUserModel } from '@src/domain/models/user'
 
 export class UsersController implements Controller {
@@ -35,7 +34,7 @@ export class UsersController implements Controller {
     }
   }
 
-  public async authenticate(req: Request, res: Response): Promise<Response> {
+  /* public async authenticate(req: Request, res: Response): Promise<Response> {
     const user = await User.findOne({ email: req.body.email })
     if (!user) {
       return res.status(401).send({
@@ -50,6 +49,6 @@ export class UsersController implements Controller {
     }
     const token = generateToken(user.toJSON())
 
-    return res.send({ ...user.toJSON(), ...{ token } })
   }
+  return res.send({ ...user.toJSON(), ...{ token } }) */
 }

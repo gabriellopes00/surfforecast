@@ -11,7 +11,8 @@ class AddBeachRepositoryStub implements AddBeachRepository {
         lat: -33.792726,
         lng: 151.289824,
         name: 'Manly',
-        position: BeachPosition.E
+        position: BeachPosition.E,
+        user: 'any_user'
       })
     )
   }
@@ -40,7 +41,7 @@ describe('DbAddBeach tests', () => {
   it('Should return a beach on success', async () => {
     const { sut, beachData } = makeSut()
     const beach = await sut.add(beachData)
-    expect(beach).toEqual({ id: 'any_id', ...beachData })
+    expect(beach).toEqual({ id: 'any_id', ...beachData, user: 'any_user' })
   })
 
   it('Should throw if addBeachRepository throws', async () => {

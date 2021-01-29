@@ -1,4 +1,3 @@
-import mongoose from 'mongoose'
 import { AddBeach } from '@src/domain/usecases/beaches/add-beach'
 import { Controller } from '../interfaces/controller'
 import { HttpRequest, HttpResponse } from '../interfaces/http'

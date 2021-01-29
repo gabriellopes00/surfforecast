@@ -1,7 +1,7 @@
 import { Hasher } from '../../../../implementation/interfaces/users/hasher'
 import { LoadUserRepository } from '../../../../implementation/interfaces/users/load-user-repository'
 import { UserModel } from '../../../../domain/models/user'
-import { AddUserModel } from '../../../../domain/usecases/users/add-user'
+import { AddUserModel } from '../../../../domain/models/user'
 import { AddUserRepository } from '../../../interfaces/users/add-user-repository'
 import { DbAddUser } from '../db-add-user'
 
