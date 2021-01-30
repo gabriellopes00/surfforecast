@@ -12,14 +12,14 @@ export class Authentication implements Authenticator {
   ) {}
 
   async authenticate(data: AuthenticationModel): Promise<string> {
-    const account = await this.loadUserRepository.loadByEmail(data.email)
-    if (account) {
+    const user = await this.loadUserRepository.loadByEmail(data.email)
+    if (user) {
       const isValid = await this.hashComparer.compare(
         data.password,
-        account.password
+        user.password
       )
       if (isValid) {
-        const token = await this.encrypter.encrypt(account.id)
+        const token = await this.encrypter.encrypt(user.id)
         return token
       }
     }

@@ -1,14 +1,20 @@
+import { Decrypter } from '@src/implementation/interfaces/cryptography/decrypter'
+import { Validation } from '@src/implementation/validation/interfaces/validation'
 import { AddBeach } from '@src/domain/usecases/beaches/add-beach'
 import { Controller } from '../interfaces/controller'
 import { HttpRequest, HttpResponse } from '../interfaces/http'
-import { created, serverError, unauthorized } from '../helpers/http/http'
-import { Decrypter } from '@src/implementation/interfaces/cryptography/decrypter'
-import { connect } from '@src/infra/db/helpers/mongoose'
+import {
+  badRequest,
+  created,
+  serverError,
+  unauthorized
+} from '../helpers/http/http'
 
 export class BeachController implements Controller {
   constructor(
     private readonly addBeach: AddBeach,
-    private readonly decrypter: Decrypter
+    private readonly decrypter: Decrypter,
+    private readonly validator: Validation
   ) {}
 
   public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
@@ -17,6 +23,9 @@ export class BeachController implements Controller {
         httpRequest.headers['access-token']
       )
       if (!token) return unauthorized()
+
+      const validData = this.validator.validate(httpRequest.body)
+      if (validData) return badRequest(validData)
 
       const result = await this.addBeach.add({
         ...httpRequest.body,
