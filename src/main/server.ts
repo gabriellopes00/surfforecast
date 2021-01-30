@@ -1,3 +1,4 @@
+import 'module-alias/register'
 import { connect } from '../infra/db/helpers/mongoose'
 import { mongoUrl, port } from '../config/env'
 

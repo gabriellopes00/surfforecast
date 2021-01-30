@@ -20,8 +20,6 @@ module.exports = {
     '.+\\.ts$': 'ts-jest'
   },
   moduleNameMapper: {
-    '@src/(.*)': '<rootDir>/src/$1',
-    '@tests/(.*)': '<rootDir>/tests/$1',
-    '@config/(.*)': '<rootDir>/config/$1'
+    '@src/(.*)': '<rootDir>/src/$1'
   }
 }
