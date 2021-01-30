@@ -4,7 +4,7 @@ import { mongoUrl, port } from '../config/env'
 
 connect()
   .then(async () => {
-    console.log(`Mongodb connected successfully at ${mongoUrl}`)
+    console.log(`Mongodb connected successfully`)
 
     const app = (await import('./config/index')).default
 

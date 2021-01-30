@@ -1,6 +1,8 @@
 # docker
 /data
 
+/temp
+
 # Logs
 logs
 *.log
