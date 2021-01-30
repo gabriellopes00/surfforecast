@@ -6,7 +6,7 @@ module.exports = {
   ...rootConfig,
   ...{
     rootDir: root,
-    displayName: 'end2end-tests',
+    displayName: 'functional-tests',
     setupFilesAfterEnv: ['<rootDir>/tests/jest-setup.ts'],
     testMatch: ['<rootDir>/tests/**/*.test.ts']
   }

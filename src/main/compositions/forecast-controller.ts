@@ -1,3 +1,6 @@
+import { secretKey } from '../../config/env'
+import { JwtAdapter } from '../../infra/cryptography/jwt-adapter'
 import { ForecastController } from '../../presentation/controllers/forecast'
 
-export const forecastController = new ForecastController()
+const decrypter = new JwtAdapter(secretKey)
+export const forecastController = new ForecastController(decrypter)

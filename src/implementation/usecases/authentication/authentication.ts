@@ -1,7 +1,7 @@
 import { AuthenticationModel } from '@src/domain/models/user'
 import { Authenticator } from '@src/domain/usecases/users/authentication'
-import { Encrypter } from '@src/implementation/interfaces/users/encrypter'
-import { HashComparer } from '@src/implementation/interfaces/users/hash-comparer'
+import { Encrypter } from '@src/implementation/interfaces/cryptography/encrypter'
+import { HashComparer } from '@src/implementation/interfaces/cryptography/hash-comparer'
 import { LoadUserRepository } from '@src/implementation/interfaces/users/load-user-repository'
 
 export class Authentication implements Authenticator {

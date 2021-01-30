@@ -8,7 +8,7 @@ connect()
     const app = (await import('./config/index')).default
 
     app.listen(port, () => {
-      console.log('Server running at http://localhost:' + port)
+      console.log(`Server running at http://localhost:${port}`)
     })
   })
   .catch(err => console.error(err))

@@ -2,20 +2,22 @@ import { Beach } from '../../infra/db/beaches/beach-model'
 import { ForecastService } from '../../implementation/services/forecast/forecast-service'
 import { Controller } from '../interfaces/controller'
 import { HttpRequest, HttpResponse } from '../interfaces/http'
-import { ok, serverError } from '../helpers/http/http'
-import { secretKey } from '../../config/env'
-import jwt from 'jsonwebtoken'
+import { ok, serverError, unauthorized } from '../helpers/http/http'
+import { Decrypter } from '@src/implementation/interfaces/cryptography/decrypter'
 
 const forecast = new ForecastService()
 
 export class ForecastController implements Controller {
+  constructor(private readonly decrypter: Decrypter) {}
+
   public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const token = jwt.verify(
-        httpRequest.headers['access-token'],
-        secretKey
-      ) as { id: string }
-      const beaches = await Beach.find({ user: token.id })
+      const userData = await this.decrypter.decrypt(
+        httpRequest.headers['access-token']
+      )
+      if (!userData) return unauthorized()
+
+      const beaches = await Beach.find({ user: userData.id })
       const forecastData = await forecast.processByBeaches(beaches)
       return ok(forecastData)
     } catch (error) {

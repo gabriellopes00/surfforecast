@@ -1,0 +1,30 @@
+{
+  "beaches": [
+    {
+      "lat": -33.792726,
+      "lng": 151.289824,
+      "name": "Manly",
+      "position": "E"
+    },
+    {
+      "lat": -23.99884,
+      "lng": -46.259506,
+      "name": "P.Pitangueiras, Guarujá",
+      "position": "W"
+    }
+  ],
+  "users": [
+    {
+      "name": "Gabriel Luis Lopes",
+      "email": "gabriel@mail.com",
+      "password": "surfforecast-app",
+      "passwordConfirmation": "surfforecast-app"
+    },
+    {
+      "name": "Juninho Junior",
+      "email": "juninho@mail.com",
+      "password": "surfforecast-app",
+      "passwordConfirmation": "surfforecast-app"
+    }
+  ]
+}

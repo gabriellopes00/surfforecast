@@ -1,7 +1,7 @@
 import { UserModel } from '@src/domain/models/user'
 import { AddUserModel } from '@src/domain/models/user'
 import { AddUser } from '@src/domain/usecases/users/add-user'
-import { Hasher } from '@src/implementation/interfaces/users/hasher'
+import { Hasher } from '@src/implementation/interfaces/cryptography/hasher'
 import { LoadUserRepository } from '@src/implementation/interfaces/users/load-user-repository'
 import { AddUserRepository } from '../../interfaces/users/add-user-repository'
 

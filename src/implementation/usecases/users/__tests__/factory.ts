@@ -1,4 +1,4 @@
-import { Hasher } from '../../../../implementation/interfaces/users/hasher'
+import { Hasher } from '../../../interfaces/cryptography/hasher'
 import { LoadUserRepository } from '../../../../implementation/interfaces/users/load-user-repository'
 import { UserModel } from '../../../../domain/models/user'
 import { AddUserModel } from '../../../../domain/models/user'

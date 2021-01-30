@@ -1,12 +1,17 @@
-import { SetupServer } from '../src/server'
+import { connect, close } from '../src/infra/db/helpers/mongoose'
+import { port } from '../src/config/env'
 import supertest from 'supertest'
 
-let server: SetupServer
+const test = (async function server() {
+  await connect()
+  const app = (await import('../src/main/config/index')).default
+  global.testRequest = supertest(app)
+  return app.listen(port)
+})()
 
-beforeAll(async () => {
-  server = new SetupServer()
-  await server.init()
-  global.testRequest = supertest(server.getApp())
+// beforeAll(async () => {})
+
+afterAll(async () => {
+  await close()
+  ;(await test).close()
 })
-
-afterAll(async () => await server.stop())
