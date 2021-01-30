@@ -31,10 +31,11 @@ networks:
 #     restart: always
 #     working_dir: /surfforecast
 #     volumes:
-#       - ./src/:/surfforecast/src/
-#       - ./config/:/surfforecast/config/
+#       - ./dist/:/surfforecast/dist/
 #       - ./package.json:/surfforecast/package.json
-#     command: bash -c "yarn install && yarn dev"
+#     command: bash -c "yarn install && yarn start"
+#     environment:
+#       - MONGO_URL=mongodb://mongo:27017/surfforecast
 #     ports:
 #       - '4001:4001'
 #     depends_on:
@@ -47,32 +48,6 @@ networks:
 #     image: mongo:latest
 #     volumes:
 #       - ./data:/data/db
-#     ports:
-#       - '27017:27017'
-#     networks:
-#       - surfforecast
-
-# networks:
-#   surfforecast:
-
-# version: '3'
-# services:
-#   api:
-#     # container_name: surfforecast_api
-#     image: node:14
-#     # restart: always
-#     # working_dir: /surfforecast
-#     command: yarn dev
-#     ports:
-#       - '4001:4001'
-#     depends_on:
-#       - mongo
-#     networks:
-#       - surfforecast
-
-#   mongo:
-#     # container_name: surfforecast_mongo
-#     image: mongo:latest
 #     ports:
 #       - '27017:27017'
 #     networks:

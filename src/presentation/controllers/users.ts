@@ -1,16 +1,15 @@
 import { AddUser } from '../../domain/usecases/users/add-user'
-import { Response, Request } from 'express'
 import { Validation } from '../../implementation/validation/interfaces/validation'
-import {
-  badRequest,
-  created,
-  forbidden,
-  serverError
-} from '../helpers/http/http'
 import { EmailAlreadyInUseError } from '../errors/email-already-in-use'
 import { Controller } from '../interfaces/controller'
 import { HttpRequest } from '../interfaces/http'
 import { AddUserModel } from '@src/domain/models/user'
+import {
+  badRequest,
+  conflict,
+  created,
+  serverError
+} from '../helpers/http/http'
 
 export class UsersController implements Controller {
   constructor(
@@ -25,7 +24,7 @@ export class UsersController implements Controller {
 
       const { name, email, password } = httpRequest.body
       const user = await this.addUser.add({ name, email, password })
-      if (!user) return forbidden(new EmailAlreadyInUseError())
+      if (!user) return conflict(new EmailAlreadyInUseError())
 
       delete user.password
       return created({ data: user })
@@ -33,22 +32,4 @@ export class UsersController implements Controller {
       return serverError(error)
     }
   }
-
-  /* public async authenticate(req: Request, res: Response): Promise<Response> {
-    const user = await User.findOne({ email: req.body.email })
-    if (!user) {
-      return res.status(401).send({
-        code: 401,
-        error: 'User not found!'
-      })
-    }
-    if (!(await compare(req.body.password, user.password))) {
-      return res
-        .status(401)
-        .send({ code: 401, error: 'Password does not match!' })
-    }
-    const token = generateToken(user.toJSON())
-
-  }
-  return res.send({ ...user.toJSON(), ...{ token } }) */
 }
