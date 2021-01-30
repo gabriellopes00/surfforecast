@@ -30,3 +30,16 @@ jobs:
 
       - name: Run unit tests
         run: yarn test:unit
+
+      # - shell: bash
+      #   if: github.ref == 'refs/heads/main'
+      #   name: Create SSH deployment key
+      #   env:
+      #     SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      #   run: ./scripts/deploy.sh
+
+      - name: Development
+        if: github.refs == 'refs/heads/main'
+        run: heroku git:remote -a surfforecast-api && git push heroku master
+        env:
+          CI: true
