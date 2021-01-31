@@ -1,12 +1,7 @@
 import { Express, json, Request, Response, NextFunction } from 'express'
+import cors from 'cors'
 
 const bodyParser = json()
-export const cors = (req: Request, res: Response, next: NextFunction) => {
-  res.set('access-control-allow-origin', '*')
-  res.set('access-control-allow-methods', '*')
-  res.set('access-control-allow-headers', '*')
-  next()
-}
 export const contentType = (
   req: Request,
   res: Response,
@@ -17,7 +12,7 @@ export const contentType = (
 }
 
 export default (app: Express): void => {
+  app.use(cors())
   app.use(bodyParser)
-  app.use(cors)
   app.use(contentType)
 }
