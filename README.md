@@ -25,14 +25,16 @@ You'll need [Node.js](https://nodejs.org), [Mongodb](https://www.mongodb.com/) a
 
 #### Project structure ⚙
 
-- _**config**_ ❯ specifics configuration files
+- _**.github**_ ❯ github workflows setup files
 - _**src**_ ❯ main application code (layers)
+  - _**config**_ ❯ specifics configuration files
+  - _**@types**_ ❯ custom types definition files
   - _**domain**_ ❯ application models and usecases
   - _**implementation**_ ❯ application internal usecases implementations
   - _**infra**_ ❯ external libs implementations
   - _**presentation**_ ❯ layer witch communicates the application with external environment
 - _**tests**_ ❯ functional tests code
-- _**./**_ ❯ general configuration files
+- _**.**_ ❯ general configuration files
 
 ###### Database | Docker 🐳
 
@@ -40,6 +42,12 @@ If you don't have [mongodb server](https://www.mongodb.com/) installed locally, 
 
 ```docker
 docker run -d -p 27017:27017 --rm --name surfforecast-mongo mongo
+```
+
+You can run this app using docker-compose, will be created 2 services (api and mongo(database)), and a network called surfforecast
+
+```docker-compose
+docker-compose up
 ```
 
 ###### Cloning Repository
@@ -86,6 +94,7 @@ Following the standard of the [Conventional Commits](https://www.conventionalcom
 - _**chore** commits(amount)_ ❯ `git shortlog -s --grep chore`
 - _**docs** commits(amount)_ ❯ `git shortlog -s --grep docs`
 - _**build** commits(amount)_ ❯ `git shortlog -s --grep build`
+- _**fix** commits(amount)_ ❯ `git shortlog -s --grep fix`
 
 ## Contact 📱
 
