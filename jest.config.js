@@ -8,6 +8,8 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/**/*.ts',
     '!<rootDir>/**/*.d.ts',
+    '!<rootDir>/web/**/*',
+    '!<rootDir>/src/main/**/*',
     '!<rootDir>/**/*-interface.ts',
     '!**/interfaces/**',
     '!**/domain/**'

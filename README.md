@@ -74,12 +74,9 @@ yarn build && yarn start || npm run build && npm run start
 
 ###### Tests (jest) 🧪
 
-<!-- - _**All**_ ❯ `yarn test:full`
 - _**Coverage**_ ❯ `yarn test:ci`
-- _**Watch**_ ❯ `yarn test:watch` -->
-
+- _**Watch**_ ❯ `yarn test:watch`
 - _**Unit**(.spec)_ ❯ `yarn test:unit`
-<!-- - _**Functional**(.test)_ ❯ `yarn test:func` -->
 - _**Clear Cache**_ ❯ `yarn test:cache`
 
 ###### Lint and Style (eslint | prettier) 🎭🖋
