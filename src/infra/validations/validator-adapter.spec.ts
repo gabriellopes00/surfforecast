@@ -1,5 +1,6 @@
-import { ValidatorAdapter } from './validator-adapter'
+import { EmailValidatorAdapter } from './validator-adapter'
 import validator from 'validator'
+import { InvalidParamError } from '@src/presentation/errors/invalid-param-error'
 
 jest.mock('validator', () => ({
   isEmail(): boolean {
@@ -8,9 +9,8 @@ jest.mock('validator', () => ({
 }))
 
 describe('Validator EmailValidation adapter', () => {
-  const sut = new ValidatorAdapter()
+  const sut = new EmailValidatorAdapter()
   const fakeEmail = 'gabriel@mail.com'
-  const errorMessage = 'Received email is not valid'
 
   it('Should call validator with correct email', () => {
     const validateSpy = jest.spyOn(validator, 'isEmail')
@@ -21,7 +21,7 @@ describe('Validator EmailValidation adapter', () => {
   it('Should return an Error if validation throws', () => {
     jest.spyOn(validator, 'isEmail').mockReturnValueOnce(false)
     const isValidEmail = sut.validate({ email: 'invalid@mail.com' })
-    expect(isValidEmail).toEqual(Error(errorMessage))
+    expect(isValidEmail).toEqual(new InvalidParamError('email'))
   })
 
   it('Should return true if validator return true', () => {

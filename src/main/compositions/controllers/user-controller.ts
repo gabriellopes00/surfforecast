@@ -5,6 +5,7 @@ import { ValidationCompositor } from '@src/implementation/validation/validators/
 import { MongoUserRepository } from '@src/infra/db/users/user-repository'
 import { UsersController } from '@src/presentation/controllers/users'
 import { BcryptAdapter } from '@src/infra/cryptography/bcrypt-adapter'
+import { EmailValidatorAdapter } from '@src/infra/validations/validator-adapter'
 
 const mognoUserRepository = new MongoUserRepository()
 const hasher = new BcryptAdapter(12)
@@ -20,13 +21,17 @@ const requiredFieldsValidation = new RequiredFieldsValidation([
   'password',
   'passwordConfirmation'
 ])
+
 const compareFieldsValidation = new CompareFieldsValidation(
   'password',
   'passwordConfirmation'
 )
 
+const emailValidator = new EmailValidatorAdapter()
+
 const validation = new ValidationCompositor([
   requiredFieldsValidation,
+  emailValidator,
   compareFieldsValidation
 ])
 
