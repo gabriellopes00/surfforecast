@@ -7,6 +7,7 @@ import { UsersController } from '@src/presentation/controllers/users'
 import { BcryptAdapter } from '@src/infra/cryptography/bcrypt-adapter'
 import { EmailValidatorAdapter } from '@src/infra/validations/validator-adapter'
 
+// Database and cryptography composition
 const mognoUserRepository = new MongoUserRepository()
 const hasher = new BcryptAdapter(12)
 const dbAddUser = new DbAddUser(
@@ -15,24 +16,16 @@ const dbAddUser = new DbAddUser(
   mognoUserRepository
 )
 
-const requiredFieldsValidation = new RequiredFieldsValidation([
-  'name',
-  'email',
-  'password',
-  'passwordConfirmation'
+// Validations composition
+const validations = new ValidationCompositor([
+  new RequiredFieldsValidation([
+    'name',
+    'email',
+    'password',
+    'passwordConfirmation'
+  ]),
+  new CompareFieldsValidation('password', 'passwordConfirmation'),
+  new EmailValidatorAdapter()
 ])
 
-const compareFieldsValidation = new CompareFieldsValidation(
-  'password',
-  'passwordConfirmation'
-)
-
-const emailValidator = new EmailValidatorAdapter()
-
-const validation = new ValidationCompositor([
-  requiredFieldsValidation,
-  emailValidator,
-  compareFieldsValidation
-])
-
-export const usersController = new UsersController(dbAddUser, validation)
+export const usersController = new UsersController(dbAddUser, validations)
