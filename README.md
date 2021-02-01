@@ -13,6 +13,7 @@
   <img src="https://cdn.svgporn.com/logos/jest.svg" height="30" alt="jest">
   <img src="https://cdn.svgporn.com/logos/heroku-icon.svg" height="30" alt="heroku">
   <img src="https://stormglass.io/wp-content/uploads/2019/05/Stormglass-Circle-1400.svg" height="30" alt="storm-glass">
+  <img src="https://cdn.svgporn.com/logos/react.svg" height="30" alt="react">
 </p>
 
 ## About this project 📚
@@ -33,6 +34,7 @@ You'll need [Node.js](https://nodejs.org), [Mongodb](https://www.mongodb.com/) a
   - _**implementation**_ ❯ application internal usecases implementations
   - _**infra**_ ❯ external libs implementations
   - _**presentation**_ ❯ layer witch communicates the application with external environment
+  - _**main**_ ❯ components composition layer
 - _**tests**_ ❯ functional tests code
 - _**.**_ ❯ general configuration files
 
@@ -44,7 +46,7 @@ If you don't have [mongodb server](https://www.mongodb.com/) installed locally, 
 docker run -d -p 27017:27017 --rm --name surfforecast-mongo mongo
 ```
 
-You can run this app using docker-compose, will be created 2 services (api and mongo(database)), and a network called surfforecast
+And you can run the app completely using docker-compose, will be created 2 services (api and mongo), and a network called surfforecast
 
 ```docker-compose
 docker-compose up
@@ -72,11 +74,12 @@ yarn build && yarn start || npm run build && npm run start
 
 ###### Tests (jest) 🧪
 
-- _**All**_ ❯ `yarn test:full`
+<!-- - _**All**_ ❯ `yarn test:full`
 - _**Coverage**_ ❯ `yarn test:ci`
-- _**Watch**_ ❯ `yarn test:watch`
+- _**Watch**_ ❯ `yarn test:watch` -->
+
 - _**Unit**(.spec)_ ❯ `yarn test:unit`
-- _**Functional**(.test)_ ❯ `yarn test:func`
+<!-- - _**Functional**(.test)_ ❯ `yarn test:func` -->
 - _**Clear Cache**_ ❯ `yarn test:cache`
 
 ###### Lint and Style (eslint | prettier) 🎭🖋
