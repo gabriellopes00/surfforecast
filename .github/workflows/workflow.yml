@@ -28,8 +28,10 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: Run unit tests
-        run: yarn test:unit
+      - name: Run tests
+        run: yarn test:full
+        env:
+          SECRET_KEY: 'secret_key'
 
       - name: Heroku deploy
         uses: akhileshns/heroku-deploy@v3.9.9

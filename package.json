@@ -23,9 +23,10 @@
     "dev": "ts-node-dev  --respawn --transpile-only --ignore-watch node_modules --no-notify ./src/main/server.ts",
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
     "test:cache": "jest --clearCache",
-    "test:ci": "yarn test:unit --coverage",
     "test:watch": "yarn test:unit --watchAll",
-    "test:unit": "yarn test -c jest-unit.config.js"
+    "test:unit": "yarn test -c jest-unit.config.js",
+    "test:func": "yarn test --projects ./tests",
+    "test:full": "yarn test:unit && yarn test:func --silent"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.3",

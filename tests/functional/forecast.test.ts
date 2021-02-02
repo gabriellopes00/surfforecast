@@ -2,6 +2,7 @@
 // import { Beach } from '../../src/infra/db/beaches/beach-model'
 // import stormGlassWeather from '../fixtures/stormglass-weather-response.json'
 // import apiForecastResponse from '../fixtures/api-forecast-response.json'
+test('', () => expect(1 + 1).toBe(2))
 
 // import nock from 'nock'
 // import { generateToken, User } from '@src/infra/db/users/user-model'

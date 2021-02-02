@@ -24,8 +24,8 @@ export class BeachController implements Controller {
       )
       if (!token) return unauthorized()
 
-      const validData = this.validator.validate(httpRequest.body)
-      if (validData) return badRequest(validData)
+      const error = this.validator.validate(httpRequest.body)
+      if (error) return badRequest(error)
 
       const result = await this.addBeach.add({
         ...httpRequest.body,
