@@ -5,7 +5,6 @@ import { MongoBeachRepository } from '@src/infra/db/beaches/beach-repository'
 import { BeachController } from '@src/presentation/controllers/beaches'
 import { ValidationCompositor } from '@src/implementation/validation/validators/validation-compositor'
 import { RequiredFieldsValidation } from '@src/implementation/validation/validators/required-fields-validation'
-import { EmailValidatorAdapter } from '@src/infra/validations/validator-adapter'
 
 // Database composition
 const mongoBeachRepository = new MongoBeachRepository()
@@ -16,8 +15,7 @@ const decrypter = new JwtAdapter(secretKey)
 
 // validations composition
 const validations = new ValidationCompositor([
-  new RequiredFieldsValidation(['name', 'position', 'lat', 'lng']),
-  new EmailValidatorAdapter()
+  new RequiredFieldsValidation(['name', 'position', 'lat', 'lng'])
 ])
 
 export const beachController = new BeachController(
