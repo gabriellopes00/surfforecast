@@ -1,5 +1,5 @@
-import { AddUser } from '../../domain/usecases/users/add-user'
-import { Validation } from '../../implementation/validation/interfaces/validation'
+import { AddUser } from '@src/domain/usecases/users/add-user'
+import { Validation } from '@src/implementation/validation/interfaces/validation'
 import { EmailAlreadyInUseError } from '../errors/email-already-in-use'
 import { Controller } from '../interfaces/controller'
 import { HttpRequest } from '../interfaces/http'

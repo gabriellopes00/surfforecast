@@ -13,3 +13,9 @@ connect()
     })
   })
   .catch(err => console.error(err))
+
+// import app from './config/index'
+
+// export default app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`)
+// })

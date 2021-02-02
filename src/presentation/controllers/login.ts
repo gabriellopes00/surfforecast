@@ -1,6 +1,6 @@
 import { Authenticator } from '@src/domain/usecases/users/authentication'
 import { Validation } from '@src/implementation/validation/interfaces/validation'
-import { AuthenticationModel } from '../../domain/models/user'
+import { AuthenticationModel } from '@src/domain/models/user'
 import { badRequest, ok, serverError, unauthorized } from '../helpers/http/http'
 import { HttpRequest, HttpResponse } from '../interfaces/http'
 import { Controller } from '../interfaces/controller'

@@ -1,4 +1,4 @@
-import { mongoUrl } from '../../../config/env'
+import { mongoUrl } from '@src/config/env'
 import mongoose, { Mongoose } from 'mongoose'
 
 export const connect = async (): Promise<Mongoose> =>

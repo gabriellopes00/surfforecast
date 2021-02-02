@@ -1,5 +1,5 @@
-import { Beach } from '../../infra/db/beaches/beach-model'
-import { ForecastService } from '../../implementation/services/forecast/forecast-service'
+import { Beach } from '@src/infra/db/beaches/beach-model'
+import { ForecastService } from '@src/implementation/services/forecast/forecast-service'
 import { Controller } from '../interfaces/controller'
 import { HttpRequest, HttpResponse } from '../interfaces/http'
 import { ok, serverError, unauthorized } from '../helpers/http/http'

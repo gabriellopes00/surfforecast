@@ -1,4 +1,4 @@
-import { stormGlassUrl, stormGlassToken } from '../../config/env'
+import { stormGlassUrl, stormGlassToken } from '@src/config/env'
 import { StormGlassRequestError } from './errors/stormglass-request-error'
 import { StormGlassResponseError } from './errors/stormglass-response-error'
 import { ForecastPoint } from '@src/domain/models/forecast'
