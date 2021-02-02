@@ -1,5 +1,5 @@
 import { GithubCorner } from '../github-corner/github-corner'
-import { WrapperDiv } from './styles'
+import { WrapperDiv, Content } from './styles'
 import { Header } from '../header/header'
 import { Panel } from '../panel/panel'
 
@@ -7,8 +7,10 @@ export const Wrapper: React.FC = () => {
   return (
     <div>
       <WrapperDiv>
-        <Header />
-        <Panel />
+        <Content>
+          <Header />
+          <Panel />
+        </Content>
         <div></div>
       </WrapperDiv>
 
