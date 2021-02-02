@@ -1,6 +1,6 @@
 # Surfforecast App 🌊
 
-##### An app that queries a weather API to provide a better weather forecast for surfing on your favorite beaches.
+##### An app that queries a [weather API](https://stormglass.io/) to provide a better weather forecast for surfing on your favorite beaches.
 
 ###### An API mande with
 
@@ -14,15 +14,12 @@
   <img src="https://cdn.svgporn.com/logos/heroku-icon.svg" height="30" alt="heroku">
   <img src="https://stormglass.io/wp-content/uploads/2019/05/Stormglass-Circle-1400.svg" height="30" alt="storm-glass">
   <img src="https://cdn.svgporn.com/logos/react.svg" height="30" alt="react">
+  <img src="https://cdn.svgporn.com/logos/github-icon.svg" height="30" alt="github">
 </p>
 
 ## About this project 📚
 
-This is an API made with Node.js, Typescript and Mongodb, witch the users can register your favorite beaches, and get a forecast for each beach in certain times. In addition, based in the forecasts, will be calculated a rating, to choose the best beach to surf.
-
-## Building 🔧
-
-You'll need [Node.js](https://nodejs.org), [Mongodb](https://www.mongodb.com/) and i recommend that you have installed the [Yarn](https://yarnpkg.com/getting-started/install). After, you can run the scripts below...
+This is a project made with Node.js, Typescript, Mongodb and React.js, witch the users register and can record your favorite beaches, and get a forecast for each beach in certain times, containing wind speed, wind direction, wave speed, wave duration, wave height, swell direction, swell height... In addition, based in the forecasts, will be calculated a rating, to choose the best beach to surf.
 
 #### Project structure ⚙
 
@@ -38,39 +35,55 @@ You'll need [Node.js](https://nodejs.org), [Mongodb](https://www.mongodb.com/) a
 - _**tests**_ ❯ functional tests code
 - _**.**_ ❯ general configuration files
 
-###### Database | Docker 🐳
+## Building 🔧
 
-If you don't have [mongodb server](https://www.mongodb.com/) installed locally, you can run the database with [docker](https://www.docker.com/). With the command below, a [mongo image](https://hub.docker.com/_/mongo) will be pulled, and mongodb will be started at port _27017_ into your _localhost_, in a container called _surfforecast-mongo_.
-
-```docker
-docker run -d -p 27017:27017 --rm --name surfforecast-mongo mongo
-```
-
-And you can run the app completely using docker-compose, will be created 2 services (api and mongo), and a network called surfforecast
-
-```docker-compose
-docker-compose up
-```
+This app is made with [Node.js](https://nodejs.org) and [Mongodb](https://www.mongodb.com/), so you need to have this technologies installed, or you can run the app using [Docker](https://www.docker.com/). And i recommend that you have installed the [Yarn](https://yarnpkg.com/getting-started/install) to run the app scripts.
 
 ###### Cloning Repository
 
 ```cloning
 git clone https://github.com/gabriellopes00/surfforecast.git
 cd surfforecast
-yarn install || npm install
+yarn install --frozen-lockfile || npm install
 ```
 
-###### Running API (development environment)
+To run this project, you need to have a stormglass private key, to get the forecasts requests. Go to [stormglass website](https://stormglass.io/) and register yourself to get your private key.
+
+After run the project, go to created directory `/surfforecast/src/.env.example`, update the file data, with you own information (api_port, stormglass_token, jwt_secret...) , and finally change the env file to `.env`.
+
+###### Running with docker 🐳
+
+If you don't have [Mongodb](https://www.mongodb.com/) installed locally, you can run the only database with [Docker](https://www.docker.com/). With the command below, a [mongo image](https://hub.docker.com/_/mongo) will be pulled, and mongodb will be started at port _27017_ into your _localhost_, in a container called _surfforecast-mongo_.
+
+```docker
+docker run -d -p 27017:27017 --rm --name surfforecast-mongo mongo
+```
+
+And you can run the app completely using docker-compose. Will be created 2 services. The first is called api, and in this will be started Nodejs and all the app code will run in this service. The other will create a mongodb server, with will start mongo db at _localhost:27017_. To connect this services, will be created a network called _surfforecast_. You just need to use docker-compose to up the app:
+
+```docker-compose-up
+docker-compose up
+```
+
+After you can stop the service with:
+
+```docker-compose-down
+docker-compose down
+```
+
+###### Running in local development environment
 
 ```development
 yarn dev || npm run dev
 ```
 
-###### Generating Build and running build
+###### Generating Build and running final build
 
 ```build
 yarn build && yarn start || npm run build && npm run start
 ```
+
+##### Useful scripts 📋
 
 ###### Tests (jest) 🧪
 
