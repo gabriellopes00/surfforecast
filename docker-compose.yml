@@ -1,21 +1,32 @@
 version: '3'
 services:
   api:
+    container_name: surfforecast_api
     image: node:14
-    command: yarn dev
+    restart: always
     working_dir: /surfforecast
     volumes:
-      - ./:/surfforecast/
-
-    depends_on:
-      - mongo
+      - ./dist/:/surfforecast/dist/
+      - ./package.json:/surfforecast/package.json
+    command: bash -c "yarn install && yarn start"
+    environment:
+      - PORT=4001
+      - MONGO_URL=mongodb://mongo:27017/surfforecast
+      - STORM_GLASS_TOKEN=
+      - STORM_GLASS_API_URL="https://api.stormglass.io/v2"
+      - SECRET_KEY="secret_key"
     ports:
       - '4001:4001'
+    depends_on:
+      - mongo
     networks:
       - surfforecast
 
   mongo:
+    container_name: surfforecast_mongo
     image: mongo:latest
+    volumes:
+      - mongodb:/data/db
     ports:
       - '27017:27017'
     networks:
@@ -23,35 +34,6 @@ services:
 
 networks:
   surfforecast:
-# version: '3'
-# services:
-#   api:
-#     container_name: surfforecast_api
-#     image: node:14
-#     restart: always
-#     working_dir: /surfforecast
-#     volumes:
-#       - ./dist/:/surfforecast/dist/
-#       - ./package.json:/surfforecast/package.json
-#     command: bash -c "yarn install && yarn start"
-#     environment:
-#       - MONGO_URL=mongodb://mongo:27017/surfforecast
-#     ports:
-#       - '4001:4001'
-#     depends_on:
-#       - mongo
-#     networks:
-#       - surfforecast
 
-#   mongo:
-#     container_name: surfforecast_mongo
-#     image: mongo:latest
-#     volumes:
-#       - ./data:/data/db
-#     ports:
-#       - '27017:27017'
-#     networks:
-#       - surfforecast
-
-# networks:
-#   surfforecast:
+volumes:
+  mongodb:

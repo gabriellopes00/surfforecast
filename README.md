@@ -62,7 +62,7 @@ docker run -d -p 27017:27017 --rm --name surfforecast-mongo mongo
 And you can run the app completely using docker-compose. Will be created 2 services. The first is called api, and in this will be started Nodejs and all the app code will run in this service. The other will create a mongodb server, with will start mongo db at _localhost:27017_. To connect this services, will be created a network called _surfforecast_. You just need to use docker-compose to up the app:
 
 ```docker-compose-up
-docker-compose up
+docker-compose up -d
 ```
 
 After you can stop the service with:
