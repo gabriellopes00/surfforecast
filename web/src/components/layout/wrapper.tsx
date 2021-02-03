@@ -1,7 +1,7 @@
 import { GithubCorner } from '../github-corner/github-corner'
 import { WrapperDiv, Content } from './styles'
 import { Header } from '../header/header'
-import { Panel } from '../panel/panel'
+import { Map } from '../map/map'
 
 export const Wrapper: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ export const Wrapper: React.FC = () => {
       <WrapperDiv>
         <Content>
           <Header />
-          <Panel />
+          <Map />
         </Content>
         <div></div>
       </WrapperDiv>

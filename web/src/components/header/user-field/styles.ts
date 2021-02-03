@@ -4,7 +4,7 @@ export const UserFieldDiv = styled.div`
   max-width: 70%;
   width: 70%;
   height: 100%;
-  padding: 10px;
+  padding: 0 2vw;
 
   display: flex;
   align-items: center;
@@ -17,6 +17,7 @@ export const UserFieldDiv = styled.div`
     background-size: cover;
     height: 65px;
     width: 65px;
+    margin-left: auto;
   }
 
   .info {
@@ -24,6 +25,7 @@ export const UserFieldDiv = styled.div`
     align-items: flex-end;
     justify-content: center;
     flex-direction: column;
-    color: #e5e5e5;
+    color: #000;
+    margin-left: 20px;
   }
 `
