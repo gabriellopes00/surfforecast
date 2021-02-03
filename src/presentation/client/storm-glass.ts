@@ -8,6 +8,7 @@ import {
   StormGlassPoint
 } from './interfaces/stormglass-response'
 import { ForecastClient } from '@src/domain/usecases/forecast/fetch-points'
+import logger from '@src/config/logger'
 
 export class StormGlassClient implements ForecastClient {
   private readonly stormGlassAPISource = 'noaa'
@@ -31,6 +32,7 @@ export class StormGlassClient implements ForecastClient {
       )
       return this.normalizeResponse(response.data)
     } catch (error) {
+      logger.error(error)
       if (HTTPUtils.Request.isRequestError(error)) {
         throw new StormGlassResponseError(
           `Error: ${JSON.stringify(error.response.data)} Code: ${

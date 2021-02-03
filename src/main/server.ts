@@ -5,7 +5,7 @@ import logger from '../config/logger'
 
 connect()
   .then(async () => {
-    console.log(`Mongodb connected successfully`)
+    logger.info('Mongodb connected successfully')
 
     const app = (await import('./config/index')).default
 

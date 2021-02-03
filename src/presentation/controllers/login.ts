@@ -4,6 +4,7 @@ import { AuthenticationModel } from '@src/domain/models/user'
 import { badRequest, ok, serverError, unauthorized } from '../helpers/http/http'
 import { HttpRequest, HttpResponse } from '../interfaces/http'
 import { Controller } from '../interfaces/controller'
+import logger from '@src/config/logger'
 
 export class LoginController implements Controller {
   constructor(
@@ -25,6 +26,7 @@ export class LoginController implements Controller {
 
       return ok({ accessToken })
     } catch (error) {
+      logger.error(error)
       return serverError(error)
     }
   }

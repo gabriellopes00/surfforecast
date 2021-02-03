@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/gabriellopes00/surfing-app#readme",
   "scripts": {
-    "start": "node ./dist/main/server.js",
+    "start": "node ./dist/main/server.js | pino-pretty -c",
     "build": "rimraf ./dist && tsc -p tsconfig-build.json",
     "lint": "eslint ./src ./tests --ext .ts",
     "lint:fix": "eslint ./src ./tests --ext .ts --fix",

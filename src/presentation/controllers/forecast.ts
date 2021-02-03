@@ -4,6 +4,7 @@ import { Controller } from '../interfaces/controller'
 import { HttpRequest, HttpResponse } from '../interfaces/http'
 import { ok, serverError, unauthorized } from '../helpers/http/http'
 import { Decrypter } from '@src/implementation/interfaces/cryptography/decrypter'
+import logger from '@src/config/logger'
 
 const forecast = new ForecastService()
 
@@ -21,6 +22,7 @@ export class ForecastController implements Controller {
       const forecastData = await forecast.processByBeaches(beaches)
       return ok(forecastData)
     } catch (error) {
+      logger.error(error)
       return serverError(error)
     }
   }

@@ -2,6 +2,7 @@ import { UserModel } from '../../domain/models/user'
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import { secretKey } from '@src/config/env'
+import logger from '@src/config/logger'
 
 export interface DecodedUser extends Omit<UserModel, '_id'> {
   id: string
@@ -22,6 +23,7 @@ export function AuthMiddleware(
     req.decoded = decoded.id
     next()
   } catch (err) {
+    logger.error(err)
     res.status?.(401).send({ error: err.message })
   }
 }

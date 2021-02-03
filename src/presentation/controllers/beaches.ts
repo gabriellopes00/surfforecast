@@ -9,6 +9,7 @@ import {
   serverError,
   unauthorized
 } from '../helpers/http/http'
+import logger from '@src/config/logger'
 
 export class BeachController implements Controller {
   constructor(
@@ -33,6 +34,7 @@ export class BeachController implements Controller {
       })
       return created(result)
     } catch (error) {
+      logger.error(error)
       return serverError(error)
     }
   }

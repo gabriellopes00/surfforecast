@@ -10,6 +10,7 @@ import {
   created,
   serverError
 } from '../helpers/http/http'
+import logger from '@src/config/logger'
 
 export class UsersController implements Controller {
   constructor(
@@ -29,6 +30,7 @@ export class UsersController implements Controller {
       delete user.password
       return created({ data: user })
     } catch (error) {
+      logger.error(error)
       return serverError(error)
     }
   }
