@@ -32,6 +32,10 @@ class LoadUserRepositoryStub implements LoadUserRepository {
   async loadByEmail(email: string): Promise<UserModel> {
     return new Promise((resolve, reject) => resolve(fakeUser))
   }
+
+  async loadById(id: string): Promise<UserModel> {
+    return new Promise((resolve, reject) => resolve(fakeUser))
+  }
 }
 
 interface SutTypes {

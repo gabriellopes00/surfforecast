@@ -78,4 +78,38 @@ describe('Users functional tests', () => {
       expect(response.status).toBe(401)
     })
   })
+
+  describe('When getting user profile info', () => {
+    it(`Should return the token's owner profile information`, async () => {
+      const { body } = await global.testRequest
+        .post('/api/users')
+        .send(fakeUser)
+      const tokenResponse = await global.testRequest
+        .post('/api/login')
+        .send({ email: fakeUser.email, password: fakeUser.password })
+
+      const response = await global.testRequest
+        .get('/api/users/me')
+        .set({ 'access-token': tokenResponse.body.accessToken })
+
+      expect(response.status).toBe(200)
+      expect(response.body).toEqual({
+        name: body.data.name,
+        email: body.data.email,
+        id: body.data.id
+      })
+    })
+
+    // it('Should return Not Found, when the user is not found', async () => {
+    //   const response = await global.testRequest
+    //     .post('/api/login')
+    //     .send({ email: fakeUser.email, password: fakeUser.password })
+    //   const { body, status } = await global.testRequest
+    //     .get('/api/users/me')
+    //     .set({ 'access-token': response.body.accessToken })
+
+    //   expect(status).toBe(404)
+    //   expect(body.message).toBe('User not found!')
+    // })
+  })
 })

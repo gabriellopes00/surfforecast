@@ -3,7 +3,7 @@ import { DbAddUser } from '@src/implementation/usecases/users/db-add-user'
 import { RequiredFieldsValidation } from '@src/implementation/validation/validators/required-fields-validation'
 import { ValidationCompositor } from '@src/implementation/validation/validators/validation-compositor'
 import { MongoUserRepository } from '@src/infra/db/users/user-repository'
-import { UsersController } from '@src/presentation/controllers/users'
+import { CreateUserController } from '@src/presentation/controllers/create-user'
 import { BcryptAdapter } from '@src/infra/cryptography/bcrypt-adapter'
 import { EmailValidatorAdapter } from '@src/infra/validations/validator-adapter'
 
@@ -28,4 +28,7 @@ const validations = new ValidationCompositor([
   new EmailValidatorAdapter()
 ])
 
-export const usersController = new UsersController(dbAddUser, validations)
+export const createUserController = new CreateUserController(
+  dbAddUser,
+  validations
+)

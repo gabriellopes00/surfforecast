@@ -22,6 +22,9 @@ class LoadUserRepositoryStub implements LoadUserRepository {
   async loadByEmail(email: string): Promise<UserModel> {
     return new Promise(resolve => resolve(null))
   }
+  async loadById(id: string): Promise<UserModel> {
+    return new Promise(resolve => resolve(null))
+  }
 }
 
 class HasherStub implements Hasher {

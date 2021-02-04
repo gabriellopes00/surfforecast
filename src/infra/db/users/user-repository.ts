@@ -19,7 +19,10 @@ export class MongoUserRepository
   }
 
   async loadByEmail(email: string): Promise<UserModel> {
-    const user = await User.findOne({ email: email })
-    return user
+    return await User.findOne({ email })
+  }
+
+  async loadById(id: string): Promise<UserModel> {
+    return await User.findById(id)
   }
 }

@@ -58,12 +58,12 @@ describe('DbAddUser tests', () => {
   it('Should call Hasher with correct password', async () => {
     const { sut, hasherStub } = makeSut()
     const hashSpy = jest.spyOn(hasherStub, 'hash')
-    const accountData = {
+    const userData = {
       name: 'gabriel',
       email: 'gabrielluislopes00@gmail.com',
       password: 'password1234'
     }
-    await sut.add(accountData)
+    await sut.add(userData)
     expect(hashSpy).toHaveBeenCalledWith('password1234')
   })
 
@@ -74,16 +74,16 @@ describe('DbAddUser tests', () => {
       .mockReturnValueOnce(
         new Promise((resolve, reject) => reject(new Error()))
       )
-    const accountData = {
+    const userData = {
       name: 'gabriel',
       email: 'gabrielluislopes00@gmail.com',
       password: 'password1234'
     }
-    const accountPromise = sut.add(accountData)
-    await expect(accountPromise).rejects.toThrow()
+    const userPromise = sut.add(userData)
+    await expect(userPromise).rejects.toThrow()
   })
 
-  it('Should call AddAccountRepository with correct values', async () => {
+  it('Should call AddUserRepository with correct values', async () => {
     const { sut, addUserRepositoryStub } = makeSut()
     const addSpy = jest.spyOn(addUserRepositoryStub, 'add')
     await sut.add({

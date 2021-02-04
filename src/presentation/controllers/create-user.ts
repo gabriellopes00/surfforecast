@@ -12,7 +12,7 @@ import {
 } from '../helpers/http/http'
 import logger from '@src/config/logger'
 
-export class UsersController implements Controller {
+export class CreateUserController implements Controller {
   constructor(
     private readonly addUser: AddUser,
     private readonly validator: Validation
