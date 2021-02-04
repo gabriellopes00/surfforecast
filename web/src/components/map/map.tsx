@@ -1,9 +1,6 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { MapComponent } from './styles'
-import mapIcon from './map-icon'
-import 'leaflet/dist/leaflet.css'
-
-export const Map: React.FC = () => {
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+import { MapContainer } from './styles'
+export const MapComponent = () => {
   const beaches = [
     {
       name: 'Beach 1',
@@ -41,25 +38,36 @@ export const Map: React.FC = () => {
       lng: -46.784054
     }
   ]
+
+  const mapStyles = {
+    height: '100%',
+    width: '100%'
+  }
+
+  const defaultCenter = {
+    lat: -24.006523,
+    lng: -46.265617
+  }
+
   return (
-    <MapComponent>
-      <MapContainer
-        center={[-23.888554, -46.36045]}
-        zoom={10}
-        style={{ width: '100%', height: '100%' }}
-      >
-        <TileLayer
-          attribution="&copy; Surfforecast"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {beaches.map(beach => {
-          return (
-            <Marker position={[beach.lat, beach.lng]} icon={mapIcon}>
-              <Popup>{beach.name}</Popup>
-            </Marker>
-          )
-        })}
-      </MapContainer>
-    </MapComponent>
+    <MapContainer>
+      <LoadScript googleMapsApiKey="AIzaSyALSm0yC_KxJeUM78yjFEmWxupbmtgu6ao">
+        <GoogleMap
+          mapContainerStyle={mapStyles}
+          zoom={10}
+          center={defaultCenter}
+        >
+          {beaches.map(beach => {
+            return (
+              <Marker
+                key={beach.name}
+                position={{ lat: beach.lat, lng: beach.lng }}
+                title={beach.name}
+              />
+            )
+          })}
+        </GoogleMap>
+      </LoadScript>
+    </MapContainer>
   )
 }
