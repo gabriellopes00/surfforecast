@@ -1,9 +1,11 @@
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
-import { MapContainer } from './styles'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
+import { MapWrapper } from './styles'
+import { mapIcon } from './map-icon'
 
 const beaches = [
   {
-    name: 'Beach 1',
+    name: 'Beach 1 asdf asdf asdf',
     lat: -24.014985,
     lng: -46.416246
   },
@@ -40,34 +42,30 @@ const beaches = [
 ]
 
 export const MapComponent: React.FC = () => {
-  const mapStyles = {
-    height: '100%',
-    width: '100%'
-  }
-  const defaultCenter = {
+  const position = {
     lat: -24.006523,
     lng: -46.265617
   }
 
   return (
-    <MapContainer>
-      <LoadScript googleMapsApiKey="AIzaSyALSm0yC_KxJeUM78yjFEmWxupbmtgu6ao">
-        <GoogleMap
-          mapContainerStyle={mapStyles}
-          zoom={9}
-          center={defaultCenter}
-        >
-          {beaches.map(beach => {
-            return (
-              <Marker
-                key={beach.name}
-                position={{ lat: beach.lat, lng: beach.lng }}
-                title={beach.name}
-              />
-            )
-          })}
-        </GoogleMap>
-      </LoadScript>
-    </MapContainer>
+    <MapWrapper>
+      <MapContainer
+        center={position}
+        zoom={10}
+        scrollWheelZoom={true}
+        style={{ width: '100%', height: '100%' }}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        {beaches.map(beach => {
+          return (
+            <Marker position={[beach.lat, beach.lng]} icon={mapIcon}>
+              <Popup closeButton={true} maxWidth={50} minWidth={50}>
+                {beach.name}
+              </Popup>
+            </Marker>
+          )
+        })}
+      </MapContainer>
+    </MapWrapper>
   )
 }

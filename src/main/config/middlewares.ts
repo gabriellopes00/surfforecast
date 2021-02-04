@@ -1,6 +1,6 @@
 import { Express, json, Request, Response, NextFunction } from 'express'
-import expressPino from 'express-pino-logger'
-import logger from '../../config/logger'
+// import expressPino from 'express-pino-logger'
+// import logger from '../../config/logger'
 
 const bodyParser = json()
 export const contentType = (_: Request, res: Response, next: NextFunction) => {
@@ -18,5 +18,5 @@ export default (app: Express): void => {
   app.use(cors)
   app.use(bodyParser)
   app.use(contentType)
-  app.use(expressPino({ logger }))
+  // app.use(expressPino({ logger }))
 }

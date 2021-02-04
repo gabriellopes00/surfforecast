@@ -14,12 +14,11 @@
   <img src="https://cdn.svgporn.com/logos/heroku-icon.svg" height="30" alt="heroku">
   <img src="https://stormglass.io/wp-content/uploads/2019/05/Stormglass-Circle-1400.svg" height="30" alt="storm-glass">
   <img src="https://cdn.svgporn.com/logos/react.svg" height="30" alt="react">
-  <img src="https://cdn.svgporn.com/logos/google-maps.svg" height="30" alt="google-maps">
+  <img src="https://cdn.svgporn.com/logos/leaflet.svg" height="30" alt="leaflet-maps">
 </p>
 
 #### Website interface
 
-<img src="./.github/assets/website_screen.png"/>
 ## About this project 📚
 
 This is a project made with Node.js, Typescript, Mongodb and React.js, witch the users register and can record your favorite beaches, and get a forecast for each beach in certain times, containing wind speed, wind direction, wave speed, wave duration, wave height, swell direction, swell height... In addition, based in the forecasts, will be calculated a rating, to choose the best beach to surf.
