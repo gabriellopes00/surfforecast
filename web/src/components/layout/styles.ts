@@ -4,14 +4,13 @@ export const WrapperDiv = styled.div`
   width: 100vw !important;
   height: 100% !important;
   background-color: #e5e5e5;
-`
 
-export const Content = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
 
-  max-width: 90%;
-  margin: 0 auto;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `

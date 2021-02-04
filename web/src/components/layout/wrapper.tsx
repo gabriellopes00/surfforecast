@@ -1,21 +1,12 @@
-import { GithubCorner } from '../github-corner/github-corner'
-import { WrapperDiv, Content } from './styles'
-import { Header } from '../header/header'
+import { WrapperDiv } from './styles'
 import { MapComponent } from '../map/map'
+import { Panel } from '../panel/panel'
 
 export const Wrapper: React.FC = () => {
   return (
-    <div>
-      <WrapperDiv>
-        <Content>
-          <Header />
-          <MapComponent />
-        </Content>
-        <div></div>
-      </WrapperDiv>
-
-      {/* Github flag link */}
-      <GithubCorner projectUrl="https://github.com/gabriellopes00/surfforecast" />
-    </div>
+    <WrapperDiv>
+      <Panel />
+      <MapComponent />
+    </WrapperDiv>
   )
 }
