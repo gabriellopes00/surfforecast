@@ -13,8 +13,8 @@ import logger from '../config/logger'
     })
 
     const exitSignals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGQUIT']
-    exitSignals.map(sig =>
-      process.on(sig, async () => {
+    for (const signal of exitSignals) {
+      process.on(signal, async () => {
         try {
           await close()
           server.close()
@@ -25,7 +25,7 @@ import logger from '../config/logger'
           process.exit(1)
         }
       })
-    )
+    }
   } catch (error) {
     logger.error(error)
     process.exit(1)
