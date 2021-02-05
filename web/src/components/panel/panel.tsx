@@ -7,7 +7,7 @@ import { Props } from '../interfaces/beach'
 export const Panel: React.FC<Props> = ({ beaches }) => {
   return (
     <PanelDiv>
-      return <TableComponent beaches={beaches} />
+      <TableComponent beaches={beaches} />
       <FormComponent />
     </PanelDiv>
   )

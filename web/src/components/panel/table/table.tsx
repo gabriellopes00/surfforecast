@@ -21,11 +21,11 @@ export const TableComponent: React.FC<Props> = ({ beaches }) => {
             return (
               <tr>
                 <td>{beach.name}</td>
-                <td>5 stars</td>
-                <td>25km/h</td>
-                <td>3m</td>
+                <td>4 stars</td>
+                <td>1.7m 10.67s</td>
+                <td>1.9m</td>
                 <td>20km/h</td>
-                <td>{beach.position}</td>
+                <td>{beach.position.toUpperCase()}</td>
               </tr>
             )
           })}
