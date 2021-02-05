@@ -1,5 +1,5 @@
 import { StormGlassClient } from '../../../presentation/client/storm-glass'
-import { BeachModel, BeachPosition } from '../../../domain/models/beach'
+import { BeachModel, Position } from '../../../domain/models/beach'
 import { ForecastService } from './forecast-service'
 import { ForecastInternalProcessingError } from './errors/internal-processing-error'
 import stormGlassNormalizedData from '../../../../tests/fixtures/stormglass-normalized-response.json'
@@ -15,7 +15,7 @@ describe('Forecast Service', () => {
       lat: -33.792726,
       lng: 151.289824,
       name: 'Manly',
-      position: BeachPosition.E,
+      position: Position.E,
       id: 'any_id',
       user: 'any_user'
     }

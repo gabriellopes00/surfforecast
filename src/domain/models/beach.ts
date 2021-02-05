@@ -1,4 +1,4 @@
-export enum BeachPosition {
+export enum Position {
   S = 'S',
   E = 'E',
   W = 'W',
@@ -10,6 +10,6 @@ export interface BeachModel {
   name: string
   lat: number
   lng: number
-  position: BeachPosition
+  position: Position
   user: string
 }

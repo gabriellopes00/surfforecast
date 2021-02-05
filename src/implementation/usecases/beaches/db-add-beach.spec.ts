@@ -1,4 +1,4 @@
-import { BeachModel, BeachPosition } from '../../../domain/models/beach'
+import { BeachModel, Position } from '../../../domain/models/beach'
 import { AddBeachModel } from '../../../domain/usecases/beaches/add-beach'
 import { AddBeachRepository } from '../../interfaces/beaches/add-beach-repository'
 import { DbAddBeach } from './db-add-beach'
@@ -11,7 +11,7 @@ class AddBeachRepositoryStub implements AddBeachRepository {
         lat: -33.792726,
         lng: 151.289824,
         name: 'Manly',
-        position: BeachPosition.E,
+        position: Position.E,
         user: 'any_user'
       })
     )
@@ -23,7 +23,7 @@ const makeSut = () => {
     lat: -33.792726,
     lng: 151.289824,
     name: 'Manly',
-    position: BeachPosition.E
+    position: Position.E
   }
   const addBeachRepositoryStub = new AddBeachRepositoryStub()
   const sut = new DbAddBeach(addBeachRepositoryStub)
