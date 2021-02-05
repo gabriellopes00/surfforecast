@@ -19,6 +19,8 @@
 
 #### Website interface
 
+<img src="./.github/assets/website_screen.png"/>
+
 ## About this project 📚
 
 This is a project made with Node.js, Typescript, Mongodb and React.js, witch the users register and can record your favorite beaches, and get a forecast for each beach in certain times, containing wind speed, wind direction, wave speed, wave duration, wave height, swell direction, swell height... In addition, based in the forecasts, will be calculated a rating, to choose the best beach to surf.
